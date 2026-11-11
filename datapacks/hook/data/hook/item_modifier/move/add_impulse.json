@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:set_enchantments",
+  "enchantments": {
+    "hook:move/add_impulse_x": {
+      "type": "minecraft:score",
+      "target": {
+        "type": "minecraft:fixed",
+        "name": "#power"
+      },
+      "score": "hook.multiplier",
+      "scale": 1
+    },
+    "hook:move/add_impulse_y": {
+      "type": "minecraft:score",
+      "target": {
+        "type": "minecraft:fixed",
+        "name": "#power"
+      },
+      "score": "hook.multiplier",
+      "scale": 1
+    },
+    "hook:move/add_impulse_z": {
+      "type": "minecraft:score",
+      "target": {
+        "type": "minecraft:fixed",
+        "name": "#power"
+      },
+      "score": "hook.multiplier",
+      "scale": 1
+    }
+  }
+}
