@@ -19,6 +19,12 @@ tag @a remove hook.grabbed_heavy
 tag @a remove hook.yanked
 tag @a remove hook.near
 tag @a remove hook.attract
+tag @a remove hook.owner
+tag @a remove hook.floating
+tag @a remove hook.arrive
+tag @a remove hook.rec
+tag @a remove hook.dev_float
+kill @e[type=marker,tag=hook.proj]
 scoreboard players reset @a hook.joined
 scoreboard players reset @a hook.stage
 scoreboard players reset @a hook.ability

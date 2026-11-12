@@ -7,6 +7,8 @@ execute as @a unless score @s hook.joined matches 1 run function hook:player/joi
 execute as @e[type=player,scores={hook.death=1..}] run function hook:cp/return
 execute as @a at @s run function hook:player/tick
 execute as @e[tag=hook.enemy] at @s run function hook:enemy/tick
+execute as @e[type=marker,tag=hook.proj] at @s run function hook:combat/proj_tick
+function hook:score/tick
 
 execute unless data storage hook: built{s0:1b} run function hook:stage/0/build
 

@@ -1,48 +1,49 @@
 #> hook:hook/pull_tick
-# @s = 引っ張られているプレイヤー(実行位置も @s)。
-# いまの速度 = 前 tick からの位置の差(サーバーはプレイヤーの Motion を正しく持たないため)。
-# 望む速度 = (錨 − 位置) / 4(各軸 ±1.5 ブロック/tick まで)。その差を hook:motion/player/push で足す
-scoreboard players remove @s hook.pull 1
+# @s = 引かれているプレイヤー(実行位置・向きも @s)。#vx/#vy/#vz = いまの速度(player/vel)。
+# 溜め(#windup tick)→ #v0 から毎 tick #accel ずつ #vmax まで加速して錨へ一直線 → 手前で arrive(跳ね)。スニークで中断
+scoreboard players add @s hook.pull 1
 execute unless entity @e[tag=hook.anchor] run return run function hook:hook/release
-execute if score @s hook.pull matches ..0 run return run function hook:hook/release
-
-execute store result score #x1 hook.temporary run data get entity @s Pos[0] 100
-execute store result score #y1 hook.temporary run data get entity @s Pos[1] 100
-execute store result score #z1 hook.temporary run data get entity @s Pos[2] 100
-scoreboard players operation #vx hook.temporary = #x1 hook.temporary
-scoreboard players operation #vy hook.temporary = #y1 hook.temporary
-scoreboard players operation #vz hook.temporary = #z1 hook.temporary
-scoreboard players operation #vx hook.temporary -= @s hook.px
-scoreboard players operation #vy hook.temporary -= @s hook.py
-scoreboard players operation #vz hook.temporary -= @s hook.pz
-scoreboard players operation @s hook.px = #x1 hook.temporary
-scoreboard players operation @s hook.py = #y1 hook.temporary
-scoreboard players operation @s hook.pz = #z1 hook.temporary
-
-execute if entity @e[tag=hook.anchor,distance=..1.8] run return run function hook:hook/arrive
-
-scoreboard players set #chain hook.temporary 48
+execute if predicate hook:sneak run return run function hook:hook/release
+scoreboard players set #chain hook.temporary 90
 execute anchored eyes positioned ^ ^ ^ facing entity @n[tag=hook.anchor] feet run function hook:hook/chain
+execute if score @s hook.pull <= #windup hook.cfg run return run function hook:hook/windup
+function hook:hook/pull_sound
 
-execute store result score #motion hook.X0 run data get entity @n[tag=hook.anchor] Pos[0] 100
-execute store result score #motion hook.Y0 run data get entity @n[tag=hook.anchor] Pos[1] 100
-execute store result score #motion hook.Z0 run data get entity @n[tag=hook.anchor] Pos[2] 100
-# 重い敵へは足元の1上を目指す(足元の高さだと、敵の立つ台の側面に引っかかって落ちる)
-execute if entity @n[tag=hook.anchor,type=!marker] run scoreboard players add #motion hook.Y0 100
-scoreboard players operation #motion hook.X0 -= #x1 hook.temporary
-scoreboard players operation #motion hook.Y0 -= #y1 hook.temporary
-scoreboard players operation #motion hook.Z0 -= #z1 hook.temporary
-scoreboard players operation #motion hook.X0 /= #4 hook.constant
-scoreboard players operation #motion hook.Y0 /= #4 hook.constant
-scoreboard players operation #motion hook.Z0 /= #4 hook.constant
-# shortcut: 軸ごとに上限をかけるので斜めは少し向きがずれる。気になったらベクトル長で割る形にする
-execute if score #motion hook.X0 matches 151.. run scoreboard players set #motion hook.X0 150
-execute if score #motion hook.X0 matches ..-151 run scoreboard players set #motion hook.X0 -150
-execute if score #motion hook.Y0 matches 151.. run scoreboard players set #motion hook.Y0 150
-execute if score #motion hook.Y0 matches ..-151 run scoreboard players set #motion hook.Y0 -150
-execute if score #motion hook.Z0 matches 151.. run scoreboard players set #motion hook.Z0 150
-execute if score #motion hook.Z0 matches ..-151 run scoreboard players set #motion hook.Z0 -150
-scoreboard players operation #motion hook.X0 -= #vx hook.temporary
-scoreboard players operation #motion hook.Y0 -= #vy hook.temporary
-scoreboard players operation #motion hook.Z0 -= #vz hook.temporary
+# 時間切れ・詰まり
+scoreboard players operation #t hook.temporary = @s hook.pull
+scoreboard players operation #t hook.temporary -= #windup hook.cfg
+execute if score #t hook.temporary > #maxt hook.cfg run return run function hook:hook/arrive
+function hook:hook/stuck_check
+execute if score @s hook.stuck >= #stuck hook.cfg run return run function hook:hook/arrive
+
+# 加速
+execute if score @s hook.spd matches 1.. run scoreboard players operation @s hook.spd += #accel hook.cfg
+execute if score @s hook.spd matches 0 run scoreboard players operation @s hook.spd = #v0 hook.cfg
+execute if score @s hook.spd > #vmax hook.cfg run scoreboard players operation @s hook.spd = #vmax hook.cfg
+
+# 終了判定: 錨まで #stop(重い敵は #stop_e)+ 速さ×#lead/100 以内(次の tick に進む分を見込む)
+scoreboard players operation #d hook.temporary = @s hook.spd
+scoreboard players operation #d hook.temporary *= #lead hook.cfg
+scoreboard players operation #d hook.temporary /= #100 hook.constant
+execute if entity @n[tag=hook.anchor,type=marker] run scoreboard players operation #d hook.temporary += #stop hook.cfg
+execute unless entity @n[tag=hook.anchor,type=marker] run scoreboard players operation #d hook.temporary += #stop_e hook.cfg
+execute store result storage hook: tmp.d double 0.01 run scoreboard players get #d hook.temporary
+function hook:hook/near with storage hook: tmp
+execute if entity @s[tag=hook.arrive] run return run function hook:hook/arrive
+
+# 錨への向き × 速さ − いまの速度 を足す。重い敵へは足元の1上を目指す(台の側面に引っかからないように)
+execute if entity @n[tag=hook.anchor,type=marker] facing entity @n[tag=hook.anchor] feet run function hook:util/dir
+execute unless entity @n[tag=hook.anchor,type=marker] positioned ~ ~-1 ~ facing entity @n[tag=hook.anchor] feet run function hook:util/dir
+scoreboard players operation #motion hook.X0 = #dx hook.temporary
+scoreboard players operation #motion hook.Y0 = #dy hook.temporary
+scoreboard players operation #motion hook.Z0 = #dz hook.temporary
+scoreboard players operation #motion hook.X0 *= @s hook.spd
+scoreboard players operation #motion hook.Y0 *= @s hook.spd
+scoreboard players operation #motion hook.Z0 *= @s hook.spd
+scoreboard players operation #motion hook.X0 /= #1000 hook.constant
+scoreboard players operation #motion hook.Y0 /= #1000 hook.constant
+scoreboard players operation #motion hook.Z0 /= #1000 hook.constant
+scoreboard players operation #motion hook.X0 -= #cx hook.temporary
+scoreboard players operation #motion hook.Y0 -= #cy hook.temporary
+scoreboard players operation #motion hook.Z0 -= #cz hook.temporary
 function hook:motion/player/push

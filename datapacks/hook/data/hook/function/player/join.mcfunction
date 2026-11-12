@@ -8,6 +8,11 @@ tag @s remove hook.attract
 tag @s remove hook.hit
 tag @s remove hook.impacted
 tag @s remove hook.stun
+tag @s remove hook.owner
+tag @s remove hook.floating
+tag @s remove hook.arrive
+tag @s remove hook.rec
+tag @s remove hook.dev_float
 effect clear @s
 clear @s
 scoreboard players set @s hook.joined 1

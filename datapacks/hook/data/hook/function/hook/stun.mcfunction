@@ -4,3 +4,4 @@ effect give @s minecraft:slowness 3 255 true
 effect give @s minecraft:weakness 3 255 true
 tag @s add hook.stun
 scoreboard players set @s hook.stun 60
+scoreboard players operation @s hook.mv = #mv_t hook.cfg

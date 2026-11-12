@@ -13,6 +13,28 @@ scoreboard objectives add hook.px dummy
 scoreboard objectives add hook.py dummy
 scoreboard objectives add hook.pz dummy
 scoreboard objectives add hook.death minecraft.custom:minecraft.deaths
+# フックv2・戦闘(定数は hook:hook/config)
+scoreboard objectives add hook.cfg dummy
+scoreboard objectives add hook.held dummy
+scoreboard objectives add hook.spd dummy
+scoreboard objectives add hook.stuck dummy
+scoreboard objectives add hook.fuel dummy
+scoreboard objectives add hook.hop dummy
+scoreboard objectives add hook.hx dummy
+scoreboard objectives add hook.hy dummy
+scoreboard objectives add hook.hz dummy
+scoreboard objectives add hook.mv dummy
+scoreboard objectives add hook.vh dummy
+scoreboard objectives add hook.score dummy
+scoreboard players add #kills hook.score 0
+scoreboard players add #time hook.score 0
+scoreboard players add #combo hook.score 0
+scoreboard players add #combo_t hook.score 0
+scoreboard players add #combo_max hook.score 0
+scoreboard players add #run hook.score 0
+function hook:hook/config
+# 爆弾兵の自爆で地形を壊さない
+gamerule mob_griefing false
 # ボス3 用(無いと boss/3/tick の判定が全部失敗し、reset → build が毎 tick 回ってトゲの欠片が溢れる)
 scoreboard objectives add hook.b3 dummy
 scoreboard objectives add hook.b3d minecraft.custom:minecraft.deaths
@@ -31,6 +53,7 @@ scoreboard objectives add hook.temporary dummy
 scoreboard objectives add hook.multiplier dummy
 
 scoreboard players set #-1 hook.constant -1
+scoreboard players set #-2 hook.constant -2
 scoreboard players set #1 hook.constant 1
 scoreboard players set #2 hook.constant 2
 scoreboard players set #3 hook.constant 3
@@ -42,7 +65,10 @@ scoreboard players set #14 hook.constant 14
 scoreboard players set #16 hook.constant 16
 scoreboard players set #20 hook.constant 20
 scoreboard players set #32 hook.constant 32
+scoreboard players set #50 hook.constant 50
 scoreboard players set #64 hook.constant 64
+scoreboard players set #91 hook.constant 91
+scoreboard players set #98 hook.constant 98
 scoreboard players set #100 hook.constant 100
 scoreboard players set #128 hook.constant 128
 scoreboard players set #256 hook.constant 256

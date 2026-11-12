@@ -926,8 +926,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -977,8 +977,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1028,8 +1028,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1079,8 +1079,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1130,8 +1130,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1181,8 +1181,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1232,8 +1232,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1283,8 +1283,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1334,8 +1334,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1385,8 +1385,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1436,8 +1436,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1487,8 +1487,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1538,8 +1538,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1589,8 +1589,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1640,8 +1640,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1691,8 +1691,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,
@@ -1742,8 +1742,8 @@
           "type": "minecraft:apply_impulse",
           "direction": [
             0,
-            0,
-            -1
+            -1,
+            0
           ],
           "coordinate_scale": [
             1,

@@ -5,7 +5,7 @@ execute store result score #n hook.b3 if entity @e[tag=hook.b3m]
 execute if score #n hook.b3 matches 2.. run return 0
 scoreboard players add #kind hook.b3 1
 execute if score #kind hook.b3 matches 1 at @e[tag=hook.boss3,limit=1] run function hook:enemy/summon/zombie
-execute if score #kind hook.b3 matches 2.. at @e[tag=hook.boss3,limit=1] run function hook:enemy/summon/spider
+execute if score #kind hook.b3 matches 2.. at @e[tag=hook.boss3,limit=1] run function hook:enemy/summon/bomber
 execute if score #kind hook.b3 matches 2.. run scoreboard players set #kind hook.b3 0
 tag @e[tag=hook.new] add hook.s4
 tag @e[tag=hook.new] add hook.b3m
