@@ -1,10 +1,8 @@
 #> hook:boss/1/reward
-# @s = ボス1を倒したプレイヤー。能力1「ヘビーインパクト」を与えてステージ2へ
-execute unless score @s hook.ability matches 1.. run scoreboard players set @s hook.ability 1
-title @s title {text:"水晶の巨兵 撃破",color:"gold"}
-title @s subtitle {text:"能力「ヘビーインパクト」を得た",color:"light_purple"}
-tellraw @s [{text:"[坑夫の書き置き] ",color:"light_purple"},{text:"やったな。巨兵の欠片がフックに宿った。",color:"white"}]
-tellraw @s [{text:"【能力】ヘビーインパクト: ",color:"gold"},{text:"重い敵にフックを当てて飛び込むと、ぶつかった勢いでその敵を進行方向へ突き飛ばす。",color:"white"}]
-# 坑道に残った雑魚を片付ける(forceload されたままなので動き続ける)
-kill @e[tag=hook.s1]
-function hook:stage/2/start
+# 撃破の物語(2行)と欠片
+execute as @a[scores={hook.stage=1}] at @s run playsound minecraft:ui.toast.challenge_complete master @s ~ ~ ~ 1 1
+title @a[scores={hook.stage=1}] times 10 60 20
+title @a[scores={hook.stage=1}] subtitle {text:"水晶の巨兵 撃破",color:"light_purple"}
+title @a[scores={hook.stage=1}] title {text:"太陽石の欠片 1/3",color:"yellow"}
+tellraw @a[scores={hook.stage=1}] {text:"巨兵は膝をつき、胸の水晶から太陽石の欠片がこぼれ落ちた。欠片の光で、鉤が輝く。",color:"yellow"}
+tellraw @a[scores={hook.stage=1}] {text:"太陽石の欠片 1/3。次の欠片は、歯車工場の番人が持っている。",color:"yellow"}

@@ -1,10 +1,22 @@
 #> hook:boss/1/start
-# @s = 闘技場の奥へ入ったプレイヤー。水晶の巨兵を出す。HP は #b1.hp、無敵時間は #b1.inv(hook.temporary)
+# @s = 闘技場の箱に入ったプレイヤー。水晶の巨兵を出す。状態は hook.b1 の偽プレイヤー:
+# #st 0 待機 / 1 間合い / 2 突進の予告 / 3 突進 / 4 水晶落としの予告 / 5 よろけ(隙)/ 6 踏みつけの予告 / 9 撃破演出
+# #t 状態の残り tick / #hp 6 / #inv 無敵 tick / #ph 段階(HP 3 以下で 2)/ #n 技の順番 / #mt 雑魚の間隔 / #dt 撃破演出の経過
+# 経路探索は使わない: movement_speed 0 で歩かせず、動きはすべて tp(突進)。トゲは突進の通り道にあれば踏む
 function hook:boss/1/reset
-execute in hook:world positioned 483.5 64 7.5 run summon zombie ~ ~ ~ {Tags:["hook.enemy","hook.heavy","hook.boss","hook.boss1","hook.s1"],PersistenceRequired:1b,Invulnerable:1b,CustomName:{text:"水晶の巨兵",color:"light_purple"},equipment:{head:{id:"minecraft:amethyst_block",count:1},chest:{id:"minecraft:diamond_chestplate",count:1},legs:{id:"minecraft:diamond_leggings",count:1},feet:{id:"minecraft:diamond_boots",count:1}},attributes:[{base:2.2,id:scale},{base:1,id:knockback_resistance},{base:0.17,id:movement_speed},{base:48,id:follow_range}]}
-scoreboard players set #b1.hp hook.temporary 3
-scoreboard players set #b1.inv hook.temporary 0
+execute in hook:world run summon zombie 345.5 71 0.5 {Tags:["hook.enemy","hook.heavy","hook.boss","hook.boss1","hook.s1"],Rotation:[90f,0f],PersistenceRequired:1b,Invulnerable:1b,CustomName:{text:"水晶の巨兵",color:"light_purple"},equipment:{head:{id:"minecraft:amethyst_block",count:1},chest:{id:"minecraft:diamond_chestplate",count:1},legs:{id:"minecraft:diamond_leggings",count:1},feet:{id:"minecraft:diamond_boots",count:1}},attributes:[{base:2.2,id:scale},{base:1,id:knockback_resistance},{base:0,id:movement_speed},{base:6,id:attack_damage},{base:48,id:follow_range}]}
+scoreboard players set #hp hook.b1 6
+scoreboard players set #ph hook.b1 1
+scoreboard players set #st hook.b1 1
+scoreboard players set #t hook.b1 40
+scoreboard players set #inv hook.b1 0
+scoreboard players set #n hook.b1 0
+scoreboard players set #mt hook.b1 140
 function hook:core/call {f:"hook:boss/1/bar_show"}
 playsound minecraft:block.amethyst_block.resonate hostile @a ~ ~ ~ 2 0.5
+title @s times 10 50 15
+title @s subtitle {text:"太陽石の欠片を胸に抱いている",color:"gray"}
 title @s title {text:"水晶の巨兵",color:"light_purple"}
-title @s subtitle {text:"巨兵を紫のトゲへ誘い込め",color:"gray"}
+tellraw @s {text:"坑道の奥で眠っていた守り手が、欠片の光に目を覚ました。",color:"light_purple"}
+tellraw @a[scores={hook.stage=1}] [{text:"▶ ",color:"aqua"},{text:"巨兵は赤い炎の線の向きへ一直線に突進する。トゲの島を挟んで誘えば、自分でトゲを踏む。壁にぶつけても、よろけて隙ができる。",color:"gray"}]
+tellraw @a[scores={hook.stage=1}] [{text:"▶ ",color:"aqua"},{text:"湧いた敵を掴んで巨兵へ投げ当てても効く。",color:"gray"}]

@@ -32,12 +32,18 @@ scoreboard players add #combo hook.score 0
 scoreboard players add #combo_t hook.score 0
 scoreboard players add #combo_max hook.score 0
 scoreboard players add #run hook.score 0
+# 光の粒(hook:lore/pick)
+scoreboard players add #lore hook.score 0
 function hook:hook/config
 # 爆弾兵の自爆で地形を壊さない
 gamerule mob_griefing false
 # ボス3 用(無いと boss/3/tick の判定が全部失敗し、reset → build が毎 tick 回ってトゲの欠片が溢れる)
 scoreboard objectives add hook.b3 dummy
 scoreboard objectives add hook.b3d minecraft.custom:minecraft.deaths
+# ステージ1・ボス1・ステージ3 の進行(偽プレイヤー)
+scoreboard objectives add hook.s1 dummy
+scoreboard objectives add hook.b1 dummy
+scoreboard objectives add hook.s3 dummy
 # hook:motion/player(test から移植)が使うもの
 scoreboard objectives add hook.X0 dummy
 scoreboard objectives add hook.Y0 dummy

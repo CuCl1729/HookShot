@@ -1,11 +1,15 @@
 #> hook:stage/2/build
-# 歯車工場(hook:world, x 600〜863, z ±14, 床の上面 y=64 / 煙突から先は y=76)。冪等。読み込まれるまでは何もしない
-# A 入口 x 600〜616 / 谷・柱台 x 625〜629(重装兵)/ R2 プレスの間 x 640〜690(門 x 645, 691)/ 足場 x 692〜696
-# R3 ベルトの谷 浮き台 x 705〜709, 718〜722 / R4 鍛造ライン x 731〜775(プレス3基)/ R5 煙突 x 783〜787(y70)
-# 前室 x 793〜818(y76)/ ボス部屋 x 820〜862 z ±13(壁 x 819, 863, z ±14、入口 z -1〜1)
-execute in hook:world unless loaded 592 63 -16 run return 0
-execute in hook:world unless loaded 879 63 15 run return 0
-execute in hook:world unless loaded 592 63 15 run return 0
-execute in hook:world unless loaded 879 63 -16 run return 0
+# 歯車工場(hook:world, x 600〜900)。冪等: 範囲の entity(プレイヤー以外)と地形を消してから建てる。読み込まれるまでは何もしない
+# 入口 x 600〜611 / 大工場 x 612〜788 z ±40 床の上面 y 64(壁 y 104 まで、屋根なし)
+#   ハブ(西): 練習プレス 632,0 / 北 A 圧延ライン(遅延プレス3基と台車の炉心)/ 南 C 組立場(ウェーブ・プレス4基)/ 東の高所 B クレーン(炉は y 103)
+#   東の壁 x 789 の中央に扉(3基停止で開く)と炉のランプ
+# 前室 x 790〜818 / ボス部屋 x 820〜862 z ±13(壁 x 819, 863, z ±14、入口 z -1〜1)
+execute in hook:world unless loaded 600 63 -64 run return 0
+execute in hook:world unless loaded 900 63 63 run return 0
+execute in hook:world unless loaded 600 63 63 run return 0
+execute in hook:world unless loaded 900 63 -64 run return 0
+execute in hook:world unless loaded 750 63 0 run return 0
+execute in hook:world run kill @e[type=!minecraft:player,x=600,y=40,z=-64,dx=300,dy=80,dz=127]
+execute in hook:world run function hook:stage/2/clear
 execute in hook:world run function hook:stage/2/build_blocks
 data modify storage hook: built.s2 set value 1b

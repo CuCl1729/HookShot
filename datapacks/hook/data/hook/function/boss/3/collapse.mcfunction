@@ -1,6 +1,5 @@
 #> hook:boss/3/collapse
-# hook:world で実行。床を崩して浮島だけ残す。先にチェックポイントを闘技場内の入口の島へ移す(落ちても戦闘が続く)
-execute as @a[scores={hook.stage=4}] run function hook:cp/set {id:41,x:1518.5,y:64,z:0.5,yaw:-90}
+# hook:world。床を崩して浮島だけ残す(高い所のフックポイントと、プレスの筐体 y 71〜 は残る)
 fill 1516 64 -16 1584 64 16 minecraft:air replace minecraft:amethyst_cluster
 fill 1516 62 -16 1584 68 16 minecraft:air
 function hook:stage/4/islands

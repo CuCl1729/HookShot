@@ -7,6 +7,9 @@ execute in hook:world run function hook:boss/3/reset
 bossbar remove hook:boss1
 kill @e[tag=hook.enemy]
 kill @e[tag=hook.tut]
+kill @e[tag=hook.lore]
+scoreboard players set #lore hook.score 0
+data remove storage hook: ranks
 kill @e[type=item]
 kill @e[type=firework_rocket]
 data remove storage hook: built
