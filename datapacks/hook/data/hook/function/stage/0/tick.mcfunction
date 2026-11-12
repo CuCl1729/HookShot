@@ -12,9 +12,9 @@ execute in hook:world as @e[tag=hook.p4,tag=!hook.yanking,tag=!hook.grabbed,tag=
 execute in hook:world as @e[tag=hook.p5a,tag=!hook.yanking,tag=!hook.grabbed,tag=!hook.thrown] unless score @s hook.mv matches 1.. run tp @s 57.5 64 29.5
 execute in hook:world as @e[tag=hook.p5b,tag=!hook.yanking,tag=!hook.grabbed,tag=!hook.thrown] unless score @s hook.mv matches 1.. run tp @s 60.5 64 29.5
 execute in hook:world as @e[tag=hook.p6b,tag=!hook.yanking,tag=!hook.grabbed,tag=!hook.thrown] unless score @s hook.mv matches 1.. run tp @s 46.5 64 40.5
-execute in hook:world as @e[tag=hook.p6z1,tag=!hook.yanking,tag=!hook.grabbed,tag=!hook.thrown] unless score @s hook.mv matches 1.. run tp @s 36.5 64 18.5
+execute in hook:world as @e[tag=hook.p6z1,tag=!hook.yanking,tag=!hook.grabbed,tag=!hook.thrown] unless score @s hook.mv matches 1.. run tp @s 37.5 64 19.5
 execute in hook:world as @e[tag=hook.p6z2,tag=!hook.yanking,tag=!hook.grabbed,tag=!hook.thrown] unless score @s hook.mv matches 1.. run tp @s 38.5 64 20.5
-execute in hook:world as @e[tag=hook.p6z3,tag=!hook.yanking,tag=!hook.grabbed,tag=!hook.thrown] unless score @s hook.mv matches 1.. run tp @s 36.5 64 21.5
+execute in hook:world as @e[tag=hook.p6z3,tag=!hook.yanking,tag=!hook.grabbed,tag=!hook.thrown] unless score @s hook.mv matches 1.. run tp @s 37.5 64 21.5
 execute in hook:world as @e[tag=hook.p7] run tp @s 5.5 64 29.5
 execute in hook:world as @e[tag=hook.p8a,tag=!hook.yanking,tag=!hook.grabbed,tag=!hook.thrown] unless score @s hook.mv matches 1.. run tp @s -21.5 64 22.5
 execute in hook:world as @e[tag=hook.p8b,tag=!hook.yanking,tag=!hook.grabbed,tag=!hook.thrown] unless score @s hook.mv matches 1.. run tp @s -21.5 64 36.5

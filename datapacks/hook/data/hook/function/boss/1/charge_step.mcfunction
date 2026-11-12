@@ -3,5 +3,10 @@
 execute rotated as @n[type=marker,tag=hook.b1dir] positioned ^ ^ ^1.2 unless block ~ ~1.5 ~ #hook:pass run return run function hook:boss/1/crash
 execute rotated as @n[type=marker,tag=hook.b1dir] positioned ^ ^ ^0.2 run tp @s ~ ~ ~
 execute at @s if block ~ ~ ~ minecraft:amethyst_cluster run return run function hook:boss/1/hit
+# 巨兵は幅が広い(scale 2.2)。足の四隅のどこかがトゲに乗っても踏んだことにする
+execute at @s positioned ~0.6 ~ ~0.6 if block ~ ~ ~ minecraft:amethyst_cluster run return run function hook:boss/1/hit
+execute at @s positioned ~-0.6 ~ ~0.6 if block ~ ~ ~ minecraft:amethyst_cluster run return run function hook:boss/1/hit
+execute at @s positioned ~0.6 ~ ~-0.6 if block ~ ~ ~ minecraft:amethyst_cluster run return run function hook:boss/1/hit
+execute at @s positioned ~-0.6 ~ ~-0.6 if block ~ ~ ~ minecraft:amethyst_cluster run return run function hook:boss/1/hit
 scoreboard players remove #steps hook.b1 1
 execute if score #steps hook.b1 matches 1.. at @s run function hook:boss/1/charge_step

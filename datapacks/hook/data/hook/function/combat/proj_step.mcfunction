@@ -5,6 +5,8 @@ execute positioned ^ ^ ^0.5 positioned ~ ~-0.8 ~ if block ~ ~ ~ minecraft:target
 execute positioned ^ ^ ^0.5 unless block ~ ~ ~ #hook:pass run return run function hook:combat/proj_wall
 execute positioned ^ ^ ^0.5 unless block ~ ~-0.8 ~ #hook:pass run return run function hook:combat/proj_wall
 execute positioned ^ ^ ^0.5 positioned ~ ~-0.9 ~ if entity @e[tag=hook.enemy,tag=!hook.thrown,tag=!hook.dying,distance=..1.4] run return run function hook:combat/proj_hit
+# 重装兵は背が高い(scale 1.4)。頭を狙っても当たるよう、体の中ほどで見て足元から proj_hit
+execute positioned ^ ^ ^0.5 positioned ~ ~-1.6 ~ if entity @e[tag=hook.heavy,tag=!hook.boss,tag=!hook.thrown,tag=!hook.dying,distance=..1.7] positioned as @n[tag=hook.heavy,tag=!hook.boss,tag=!hook.thrown,tag=!hook.dying] run return run function hook:combat/proj_hit
 execute positioned ^ ^ ^0.5 positioned ~ ~-0.9 ~ if entity @e[tag=hook.boss,tag=!hook.dying,distance=..2.5] run return run function hook:combat/proj_hit
 tp @s ^ ^ ^0.5
 execute at @s as @e[tag=hook.thrown] run tp @s ~ ~-0.9 ~
