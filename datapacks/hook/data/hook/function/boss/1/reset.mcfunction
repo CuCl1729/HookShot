@@ -9,3 +9,7 @@ scoreboard players set #st hook.b1 0
 function hook:core/call {f:"hook:boss/1/bar_hide"}
 execute in hook:world run fill 311 71 -20 359 71 20 minecraft:air replace minecraft:amethyst_cluster
 function hook:boss/1/spikes
+# 撃破後の欠片(boss/1/shard)
+kill @e[type=marker,tag=hook.b1shard]
+execute in hook:world run fill 334 78 -1 336 81 1 minecraft:air
+scoreboard players set #shot hook.b1 0

@@ -66,4 +66,7 @@ fill -25 70 27 -25 70 31 minecraft:polished_blackstone_bricks
 fill -25 64 27 -25 69 31 minecraft:iron_bars
 fill -30 64 26 -30 69 32 minecraft:black_concrete
 
-execute unless entity @e[tag=hook.npc] positioned -24.5 64 2.5 run function hook:npc/summon
+# 長老(hook:npc/summon は旧名「師範」で出すので、出した後に名前を変える。古いワールドの師範も建て直しで入れ替わる)
+kill @e[tag=hook.npc]
+execute positioned -24.5 64 2.5 run function hook:npc/summon
+data merge entity @n[tag=hook.npc] {CustomName:{text:"長老",color:"yellow"}}

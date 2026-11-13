@@ -5,4 +5,6 @@ summon marker ~ ~ ~ {Tags:["hook.b1dir","hook.s1"]}
 scoreboard players set #st hook.b1 2
 scoreboard players set #t hook.b1 30
 execute if score #ph hook.b1 matches 2 run scoreboard players set #t hook.b1 24
+scoreboard players set #lk hook.b1 14
+function hook:boss/1/tele
 playsound minecraft:entity.ravager.roar hostile @a ~ ~ ~ 2 0.6

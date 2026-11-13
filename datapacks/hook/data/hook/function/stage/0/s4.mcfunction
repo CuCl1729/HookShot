@@ -7,5 +7,7 @@ execute in hook:world run tp @e[tag=hook.npc] 90.5 64 10.5
 function hook:stage/0/sp4
 playsound minecraft:entity.experience_orb.pickup master @s ~ ~ ~ 1 1
 execute if score #fl hook.tut matches 0 run tellraw @s [{text:"▶ ",color:"aqua"},{text:"(フロートは後で必ず要る。空中でスニーク)",color:"gray"}]
-tellraw @s [{text:"▶ ",color:"aqua"},{text:"掴む・投げる: 軽い敵にフックを当てると、目の前まで引き寄せて掴む。もう一度右クリックで見ている方へ投げる。",color:"gray"}]
+tellraw @s {text:"§e長老§f「敵は鉤では倒せん。引いて、投げて、仕掛けに放り込め」"}
+tellraw @s [{text:"▶ ",color:"aqua"},{text:"掴む・投げる: 軽い敵にフックを当てると、目の前まで引き寄せて掴む。もう一度右クリックで見ている方へ投げる。スニークで放す。",color:"gray"}]
 tellraw @s [{text:"▶ ",color:"aqua"},{text:"台の上のゾンビを掴み、壁の的(標的ブロック)に投げ当てろ。扉が開く。",color:"gray"}]
+function hook:stage/0/goal

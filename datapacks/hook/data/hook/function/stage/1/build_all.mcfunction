@@ -51,7 +51,7 @@ fill 234 72 -40 238 74 -36 minecraft:cobbled_deepslate
 fill 222 84 -40 226 86 -36 minecraft:cobbled_deepslate
 fill 233 96 -30 238 98 -25 minecraft:cobbled_deepslate
 fill 222 106 -24 225 108 -21 minecraft:cobbled_deepslate
-summon item_display 235.5 99.5 -27.5 {Tags:["hook.s1","hook.s1key"],billboard:"center",brightness:{sky:15,block:15},Glowing:1b,item:{id:"minecraft:amethyst_shard",count:1},transformation:{translation:[0.0f,0.0f,0.0f],scale:[1.2f,1.2f,1.2f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}
+summon item_display 235.5 99.5 -27.5 {Tags:["hook.s1","hook.s1key","hook.s1ka"],billboard:"center",brightness:{sky:15,block:15},Glowing:1b,item:{id:"minecraft:amethyst_shard",count:1},transformation:{translation:[0.0f,0.0f,0.0f],scale:[1.2f,1.2f,1.2f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}
 summon item_display 223.5 109.3 -22.5 {Tags:["hook.lore","hook.s1","hook.s1lore"],billboard:"center",brightness:{sky:15,block:15},Glowing:1b,item:{id:"minecraft:glowstone_dust",count:1},transformation:{translation:[0.0f,0.0f,0.0f],scale:[0.8f,0.8f,0.8f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}
 fill 238 60 -40 238 66 -37 minecraft:budding_amethyst
 
@@ -116,10 +116,12 @@ summon marker 280.5 95.5 1.5 {Tags:["hook.switch","hook.s1","hook.s1t2"],data:{f
 summon marker 280.5 95.5 2.5 {Tags:["hook.switch","hook.s1","hook.s1t2"],data:{f:"hook:stage/1/c/t2"}}
 fill 276 70 -2 282 70 4 minecraft:amethyst_block
 fill 276 71 -2 282 71 4 minecraft:amethyst_cluster
-# 的3: 東の壁の窪み(前に重装兵が立つ。先に何かを投げ当てて倒す)
+# 的3: 東の壁の窪み(前に重装兵が立つ。足元はトゲ: 足止めの重装兵は自分では死なず、敵を投げ当てて弾くとトゲで倒れる)
 fill 292 71 16 297 77 16 minecraft:deepslate_bricks
 fill 292 71 22 297 77 22 minecraft:deepslate_bricks
 fill 292 77 16 297 77 22 minecraft:deepslate_bricks
+fill 292 70 17 297 70 21 minecraft:amethyst_block
+fill 292 71 17 297 71 21 minecraft:amethyst_cluster
 fill 298 72 18 298 74 20 minecraft:target
 summon marker 298.5 72.5 18.5 {Tags:["hook.switch","hook.s1","hook.s1t3"],data:{f:"hook:stage/1/c/t3"}}
 summon marker 298.5 72.5 19.5 {Tags:["hook.switch","hook.s1","hook.s1t3"],data:{f:"hook:stage/1/c/t3"}}

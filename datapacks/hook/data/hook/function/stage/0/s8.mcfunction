@@ -10,5 +10,7 @@ execute in hook:world run tp @e[tag=hook.npc] 9.5 64 20.5
 function hook:stage/0/sp8a
 function hook:stage/0/sp8b
 playsound minecraft:entity.experience_orb.pickup master @s ~ ~ ~ 1 1
-tellraw @s [{text:"▶ ",color:"aqua"},{text:"トゲ: 紫のトゲは敵だけを貫く。お前が踏んでも何ともない。だが敵は自分からは踏まない。",color:"gray"}]
-tellraw @s [{text:"▶ ",color:"aqua"},{text:"トゲの向こうのゾンビを掴み、トゲの上でスニークして落とすか、トゲへ投げつけろ。",color:"gray"}]
+tellraw @s [{text:"▶ ",color:"aqua"},{text:"トゲ: 紫のトゲは敵だけを貫く。お前が踏んでも何ともない。だが敵は自分からは踏まない。鉤で動かした直後の敵だけが刺さる。",color:"gray"}]
+tellraw @s [{text:"▶ ",color:"aqua"},{text:"トゲの向こうのゾンビを引いて掴み、トゲの上でスニークして落とすか、トゲへ投げつけろ。2体とも倒せば修了だ。",color:"gray"}]
+function hook:fairy/say {text:"紫のトゲ！ 敵を倒せるのは、こういう仕掛けだけなんだね"}
+function hook:stage/0/goal

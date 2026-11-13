@@ -14,6 +14,10 @@ scoreboard players set #c2 hook.s1 0
 scoreboard players set #c3 hook.s1 0
 scoreboard players set #cn hook.s1 0
 scoreboard players set #keys hook.s1 0
+# #ka #kb #kc = 竪坑・広間・選鉱場の鍵を取った(案内 stage/1/goal が次の行き先を選ぶ)
+scoreboard players set #ka hook.s1 0
+scoreboard players set #kb hook.s1 0
+scoreboard players set #kc hook.s1 0
 scoreboard players set #gate hook.s1 0
 execute in hook:world run function hook:boss/1/reset
 data remove storage hook: built.s1
@@ -21,8 +25,7 @@ execute in hook:world run forceload add 192 -64 511 63
 function hook:cp/set {id:10,x:202.5,y:51,z:0.5,yaw:-90}
 function hook:cp/return
 function hook:score/start
-title @s times 10 60 20
-title @s subtitle {text:"太陽石の欠片 0/3",color:"yellow"}
-title @s title {text:"水晶坑道",color:"light_purple"}
-tellraw @s {text:"太陽石の欠片 0/3。最初の欠片は、坑道の最奥にいる水晶の巨兵が持っている。",color:"yellow"}
+function hook:fx/stage_title {name:"水晶坑道",sub:"太陽石の欠片 0/3"}
+function hook:fairy/say {text:"下だ。坑道のいちばん奥から、欠片の気配がする"}
 tellraw @s {text:"最奥の門は、水晶鍵を3つ集めると開く。",color:"gray"}
+function hook:guide/set {text:"坑道の奥の大空洞へ",x:211,y:51,z:0}
