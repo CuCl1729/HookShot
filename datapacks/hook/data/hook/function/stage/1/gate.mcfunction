@@ -14,4 +14,4 @@ title @a[scores={hook.stage=1}] title {text:"門が開いた",color:"light_purpl
 title @a[scores={hook.stage=1}] subtitle {text:"大空洞の東の上段",color:"gray"}
 tellraw @a[scores={hook.stage=1}] [{text:"▶ ",color:"aqua"},{text:"大空洞の東上段の門が開いた。中央の柱の上から、開いた門の奥(天井)を撃て。",color:"gray"}]
 function hook:fairy/say {text:"門が開いたよ！ 欠片の気配はこの奥だ"}
-function hook:guide/set {text:"東上段の門から奥へ",x:251,y:97,z:0}
+function hook:guide/set {text:"東上段の門から奥へ",x:253,y:101,z:0}
