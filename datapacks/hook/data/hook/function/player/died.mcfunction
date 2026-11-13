@@ -13,7 +13,8 @@ title @s subtitle {text:"妖精の光が、きみを呼び戻す",color:"gold"}
 title @s title {text:"倒れた……",color:"dark_red"}
 execute at @s run playsound minecraft:block.respawn_anchor.deplete master @s ~ ~ ~ 1 0.8
 execute at @s run playsound minecraft:block.beacon.power_select master @s ~ ~ ~ 0.8 1.4
-execute at @s run particle minecraft:end_rod ~ ~1 ~ 0.4 0.9 0.4 0.04 40 force @s
+# 目(1.62)の近くに出すと画面を覆う大きな四角になるので、足元の周りに出す
+execute at @s run particle minecraft:end_rod ~ ~0.3 ~ 0.9 0.2 0.9 0.04 40 force @s
 execute at @s run particle minecraft:soul_fire_flame ~ ~0.2 ~ 0.6 0.1 0.6 0.02 30 force @s
 scoreboard players operation #m hook.temporary = #deaths hook.score
 scoreboard players operation #m hook.temporary %= #3 hook.constant
