@@ -55,27 +55,27 @@ island("N", 1012, 1026, -47, -37, 108);
 S.N.cmds.push(...bellArch(1017, 1021, 108, -43));
 S.N.box = [1012, 106, -47, 1026, 112, -37];
 island("W1", 1108, 1120, -30, -18, 72);
-add("M1", [1132, 53, -25, 1134, 94, -23], "static", []); // 動く範囲(ブロックは mv/place)
-add("M2", [1163, 53, -25, 1165, 94, -23], "static", []);
+add("M1", [1129, 53, -25, 1132, 94, -23], "static", []); // 4 マス奥行き(新しい跳ねは前へ約 4 進むので 3 だと越える)。動く範囲(ブロックは mv/place)
+add("M2", [1161, 53, -25, 1164, 94, -23], "static", []);
 island("W2", 1181, 1191, -30, -20, 58);
 add("TC", [1208, 50, -34, 1214, 113, -28], "static", [fill(1208, 50, -34, 1214, 113, -28, "quartz_bricks"),
   fill(1208, 56, -31, 1208, 108, -31, "light_blue_stained_glass"), fill(1214, 56, -31, 1214, 108, -31, "light_blue_stained_glass")]);
 island("L1", 1205, 1207, -34, -28, 56);
-island("L2", 1208, 1214, -37, -35, 72);
-island("L3", 1222, 1224, -34, -28, 86); // 棚は塔から離す: 真下近くから撃つと跳ねの横が縁の側面に止められて乗れない(斜めに 8 以上離す)
-island("L4", 1208, 1214, -18, -16, 100);
+island("L2", 1208, 1214, -39, -35, 70); // 跳ね(前へ約 4)で越えないよう棚は奥行き 5
+island("L3", 1222, 1226, -34, -28, 86); // 棚は塔から離す: 真下近くから撃つと跳ねの横が縁の側面に止められて乗れない(斜めに 8 以上離す)
+island("L4", 1208, 1214, -18, -14, 102);
 // 棚は真下近くから撃つので、縁の下が段々(ひさし)だと跳ねで頭を打って落ちる。縁の下 3 段を平らな壁にする
 for (const n of ["L2", "L3"]) { const [x1, , z1, x2, T, z2] = S[n].box; S[n].cmds.push(fill(x1, T - 3, z1, x2, T - 1, z2, "quartz_bricks")); S[n].box[1] = T - 3; }
 // 上の棚の縁を下から撃つと縁の下で止まって乗れない(跳ねの横が側面に止められる)。棚の縁のすぐ外の上に浮かぶ金の錨を撃てば、手前 3 マスで止まっても縁より上にいる(錨を棚の真上に置くと線が棚に当たる)
 // (フック点なので reach の箱には入れない。錨の上には立てない)
-S.L2.cmds.push(fill(1207, 77, -36, 1207, 77, -36, "gold_block"));
+S.L2.cmds.push(fill(1207, 75, -36, 1207, 75, -36, "gold_block"));
 S.L3.cmds.push(fill(1221, 91, -32, 1221, 91, -32, "gold_block"));
-S.L4.cmds.push(fill(1215, 105, -17, 1215, 105, -17, "gold_block"));
+S.L4.cmds.push(fill(1215, 107, -17, 1215, 107, -17, "gold_block"));
 island("DK", 1204, 1218, -38, -28, 116); // 棚 L4(z -18〜-16)から頂の南面の縁を斜めに撃つ
 S.DK.cmds.push(...bellArch(1209, 1213, 116, -31), fill(1211, 120, -27, 1211, 120, -27, "gold_block"));
 S.DK.box = [1204, 114, -38, 1218, 120, -28];
-const CH = [["C1", 1, 1104, 70, 20], ["C2", 2, 1120, 73, 30], ["C3", 3, 1136, 74, 40],
-  ["C4a", 4, 1150, 82, 28], ["C4b", 4, 1152, 68, 42], ["C5a", 5, 1167, 84, 24], ["C5b", 5, 1168, 66, 44]];
+const CH = [["C1", 1, 1102, 70, 20], ["C2", 2, 1120, 73, 30], ["C3", 3, 1136, 74, 40],
+  ["C4a", 4, 1150, 82, 28], ["C4b", 4, 1152, 68, 42], ["C5a", 5, 1167, 84, 26], ["C5b", 5, 1168, 66, 44]];
 for (const [n, , cx, T, cz] of CH) island(n, cx - 2, cx + 2, cz - 2, cz + 2, T, "static", "white_wool", "white_wool", "white_wool");
 island("SI", 1180, 1194, 30, 44, 78);
 S.SI.cmds.push(...bellArch(1187, 1191, 78, 37));
@@ -85,9 +85,9 @@ island("MI", 1160, 1170, -5, 5, 86, "bridge");
 ring("B3", "x", 1196, 94, 0, "bridge");
 ring("B4", "x", 1222, 100, 0, "bridge");
 ring("B5", "x", 1248, 102, 0, "bridge");
-island("G", 1268, 1296, -9, 9, 98);
+island("G", 1272, 1296, -9, 9, 98);
 S.G.cmds.push(fill(1292, 99, -3, 1292, 105, 3, "crying_obsidian"), fill(1292, 99, -2, 1292, 103, 2, "iron_bars"));
-S.G.box = [1268, 96, -9, 1296, 105, 9];
+S.G.box = [1272, 96, -9, 1296, 105, 9];
 
 // ---------------- reach checks ----------------
 function dist(a, b) {
@@ -99,23 +99,39 @@ const D = (a, b) => dist(S[a].box, S[b].box);
 const errs = [];
 const needFar = (a, others, lim) => { for (const o of others) if (o !== a && D(a, o) < lim) errs.push(`${a}-${o} ${D(a, o).toFixed(1)} < ${lim}`); };
 const needNear = (pairs, lim = 36) => { for (const [a, b] of pairs) if (D(a, b) > lim) errs.push(`hop ${a}-${b} ${D(a, b).toFixed(1)} > ${lim}`); };
+// 跳ね(2026-11 改定、CLAUDE.md の契約の暫定値: 前へ約 4.1 = 旧 2.7 + 1.4)とフロートの横ずれで、錨が届く距離の余裕が旧より増える。J を上乗せして検査する
+const J = 2;
 const names = Object.keys(S);
 const stat = names.filter((n) => S[n].phase === "static");
 const chase = CH.map((c) => c[0]);
-needFar("S0", stat, 46);                                           // 稽古の前は出発の島から出られない
-needFar("N", [...stat, "R0"], 46);                                            // 北の島は環でしか行けない
-needFar("G", [...stat, ...names.filter((n) => ["ta", "lesson"].includes(S[n].phase))], 47); // 射程 40 + 余裕(L3 から 47.5)
-needFar("SI", stat.filter((n) => !chase.includes(n)), 46);         // 南の島は崩れ雲からだけ
-for (const c of chase) needFar(c, ["W2", "M1", "M2", "TC", "L1", "L2", "L3", "L4", "DK", "N", "S0"], 44);
-needFar("W2", ["H", "W1", "HI", "HR", "M1", ...chase], 46);        // 塔の麓は動く錨を渡る(M2 からだけ)
-needFar("DK", stat.filter((n) => !["DK", "TC", "L3", "L4"].includes(n)), 41);
-needFar("L4", ["W2", "L1"], 41);
-for (const t of ["TA1", "TA2", "TA3", "TA4"]) needFar(t, ["S0"], 46);
+needFar("S0", stat, 47 + J);                                           // 稽古の前は出発の島から出られない
+needFar("N", [...stat, "R0"], 46 + J);                                            // 北の島は環でしか行けない
+needFar("G", [...stat, ...names.filter((n) => ["ta", "lesson"].includes(S[n].phase))], 47 + J); // 射程 40 + 余裕(L3 から 47.5)
+needFar("SI", stat.filter((n) => !chase.includes(n)), 46 + J);         // 南の島は崩れ雲からだけ
+for (const c of chase) needFar(c, ["W2", "M1", "M2", "TC", "L1", "L2", "L3", "L4", "DK", "N", "S0"], 44 + J);
+needFar("W2", ["H", "W1", "HI", "HR", "M1", ...chase], 46 + J);        // 塔の麓は動く錨を渡る(M2 からだけ)
+needFar("DK", stat.filter((n) => !["DK", "TC", "L3", "L4"].includes(n)), 41 + J);
+needFar("L4", ["W2", "L1"], 41 + J);
+for (const t of ["TA1", "TA2", "TA3", "TA4"]) needFar(t, ["S0"], 46 + J);
 needNear([["S0", "R0"], ["R0", "H"], ["H", "HI"], ["HI", "HR"], ["H", "TA1"], ["TA1", "TA2"], ["TA2", "TA3"],
   ["TA3", "TA4"], ["TA4", "N"], ["H", "W1"], ["W1", "M1"], ["M2", "W2"], ["W2", "L1"], ["L1", "L2"],
   ["L2", "L3"], ["L3", "L4"], ["L4", "DK"], ["H", "C1"], ["C1", "C2"], ["C2", "C3"], ["C3", "C4a"],
   ["C3", "C4b"], ["C4a", "C5a"], ["C4b", "C5b"], ["C5a", "SI"], ["C5b", "SI"], ["H", "B1"], ["B1", "B2"],
   ["B2", "MI"], ["MI", "B3"], ["B3", "B4"], ["B4", "B5"], ["B5", "G"]]);
+// (b) 薄い足場: 跳ねで前へ約 4 進む(暫定値)ので、錨を撃つ向きの奥行きが 4 未満だと越えて落ちる。[足場, 軸, 最小の奥行き] (L1 は塔の壁に接しているので対象外)
+for (const [n, ax, min] of [["M1", 0, 4], ["M2", 0, 4], ["L2", 2, 5], ["L3", 0, 5], ["L4", 2, 5]]) {
+  const bx = S[n].box, d = bx[ax + 3] - bx[ax] + 1;
+  if (d < min) errs.push(`depth ${n} ${d} < ${min}`);
+}
+// (c) 時間: 1 手 = 溜め 4 + 引き(距離/1.6 tick)+ 跳ね 18 + 狙い直し。崩れ雲は 70 tick 間隔、疾風の環は 500 tick
+const hop = (d, aim) => 4 + d / 1.6 + 18 + aim;
+{
+  const worst = Math.max(...["C1-C2", "C2-C3", "C3-C4a", "C3-C4b", "C4a-C5a", "C4b-C5b"].map((p) => { const [a, b2] = p.split("-"); return D(a, b2); }));
+  if (hop(worst, 20) > 70) errs.push(`chase hop ${hop(worst, 20).toFixed(0)} tick > 70`);
+  const ring = ["TA1", "TA2", "TA3", "TA4", "N"].reduce((t, n, i, a) => t + (i ? hop(D(a[i - 1], n), 40) : 0), hop(D("H", "TA1"), 40));
+  if (ring > 500) errs.push(`ring run ${ring.toFixed(0)} tick > 500`);
+  console.log(`chase worst hop ${hop(worst, 20).toFixed(0)}/70 tick, ring run ${ring.toFixed(0)}/500 tick`);
+}
 if (process.argv.includes("--dist")) for (const [a, b] of [["H", "N"], ["TA3", "N"], ["TA2", "N"], ["DK", "L2"], ["SI", "C3"], ["G", "DK"], ["W2", "L4"], ["S0", "H"]]) console.log(a, b, D(a, b).toFixed(1));
 if (errs.length) { console.log(errs.join("\n")); process.exit(1); }
 console.log("reach checks ok");

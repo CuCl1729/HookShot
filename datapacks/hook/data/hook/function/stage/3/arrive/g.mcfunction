@@ -1,9 +1,11 @@
 #> hook:stage/3/arrive/g
 # @s = 門の島 G に降りたプレイヤー。番兵が3波(wave/tick)
 scoreboard players set #g hook.s3 1
-function hook:stage/3/cp {id:38,x:1270.5,y:99,z:0.5,yaw:-90}
+function hook:stage/3/cp {id:38,x:1274.5,y:99,z:0.5,yaw:-90}
 scoreboard players set #wave hook.s3 1
 scoreboard players set #wt hook.s3 40
+function hook:guide/set {text:"番兵を空へ落とす 0/3",x:1284.5,y:99,z:0.5}
+function hook:fairy/say {text:"番兵が来るよ。掴んで投げて、島の外の奈落へ！ 爆弾兵は味方につけよう"}
 scoreboard players set #ws hook.s3 0
 title @s times 10 40 10
 title @s title {text:"門の島",color:"aqua"}

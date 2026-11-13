@@ -132,19 +132,22 @@ fill 1214 56 -31 1214 108 -31 minecraft:light_blue_stained_glass
 fill 1205 56 -34 1207 56 -28 minecraft:smooth_quartz
 fill 1206 55 -33 1206 55 -29 minecraft:calcite
 # L2
-fill 1208 72 -37 1214 72 -35 minecraft:smooth_quartz
-fill 1209 71 -36 1213 71 -36 minecraft:calcite
-fill 1208 69 -37 1214 71 -35 minecraft:quartz_bricks
-fill 1207 77 -36 1207 77 -36 minecraft:gold_block
+fill 1208 70 -39 1214 70 -35 minecraft:smooth_quartz
+fill 1209 69 -38 1213 69 -36 minecraft:calcite
+fill 1210 68 -37 1212 68 -37 minecraft:white_wool
+fill 1208 67 -39 1214 69 -35 minecraft:quartz_bricks
+fill 1207 75 -36 1207 75 -36 minecraft:gold_block
 # L3
-fill 1222 86 -34 1224 86 -28 minecraft:smooth_quartz
-fill 1223 85 -33 1223 85 -29 minecraft:calcite
-fill 1222 83 -34 1224 85 -28 minecraft:quartz_bricks
+fill 1222 86 -34 1226 86 -28 minecraft:smooth_quartz
+fill 1223 85 -33 1225 85 -29 minecraft:calcite
+fill 1224 84 -32 1224 84 -30 minecraft:white_wool
+fill 1222 83 -34 1226 85 -28 minecraft:quartz_bricks
 fill 1221 91 -32 1221 91 -32 minecraft:gold_block
 # L4
-fill 1208 100 -18 1214 100 -16 minecraft:smooth_quartz
-fill 1209 99 -17 1213 99 -17 minecraft:calcite
-fill 1215 105 -17 1215 105 -17 minecraft:gold_block
+fill 1208 102 -18 1214 102 -14 minecraft:smooth_quartz
+fill 1209 101 -17 1213 101 -15 minecraft:calcite
+fill 1210 100 -16 1212 100 -16 minecraft:white_wool
+fill 1215 107 -17 1215 107 -17 minecraft:gold_block
 # DK
 fill 1204 116 -38 1218 116 -28 minecraft:smooth_quartz
 fill 1205 115 -37 1217 115 -29 minecraft:calcite
@@ -165,9 +168,9 @@ fill 1187 82 37 1191 82 37 minecraft:chiseled_quartz_block
 fill 1189 82 37 1189 82 37 minecraft:target
 fill 1189 81 37 1189 81 37 minecraft:bell[attachment=ceiling,facing=east]
 # G
-fill 1268 98 -9 1296 98 9 minecraft:smooth_quartz
-fill 1269 97 -8 1295 97 8 minecraft:calcite
-fill 1270 96 -7 1294 96 7 minecraft:white_wool
+fill 1272 98 -9 1296 98 9 minecraft:smooth_quartz
+fill 1273 97 -8 1295 97 8 minecraft:calcite
+fill 1274 96 -7 1294 96 7 minecraft:white_wool
 fill 1292 99 -3 1292 105 3 minecraft:crying_obsidian
 fill 1292 99 -2 1292 103 2 minecraft:iron_bars
 function hook:stage/3/chase/build

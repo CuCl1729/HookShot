@@ -15,9 +15,8 @@ execute in hook:world run forceload add 1000 -48 1300 47
 function hook:cp/set {id:30,x:1004.5,y:64,z:0.5,yaw:-90}
 function hook:cp/return
 function hook:score/start
-title @s times 10 60 20
-title @s title {text:"第三章 天空回廊",color:"aqua"}
-title @s subtitle {text:"太陽石の欠片 2/3",color:"gold"}
-tellraw @s {text:"太陽石の欠片 2/3。最後のひとつは、空の果ての虚の王が持っている。",color:"gray"}
+function hook:fx/stage_title {name:"第三章 天空回廊",sub:"太陽石の欠片 2/3"}
+tellraw @s {text:"最後のひとつは、空の果ての虚の王が持っている。",color:"gray"}
 tellraw @s {text:"落ちても戻れるが、敵は奈落に呑まれる。",color:"gray"}
-tellraw @s {text:"スタンチェイン: 向かってくるゾンビにフックを当てよう。3秒、動けなくなる。",color:"gray"}
+function hook:guide/set {text:"ゾンビにフックを当てる",x:1013.5,y:64,z:0.5}
+function hook:fairy/say {text:"空の道だよ。まずは稽古、向かってくるゾンビにフックを当てて、スタンチェインを試そう"}

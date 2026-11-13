@@ -11,4 +11,6 @@ title @s title {text:"風の広場",color:"aqua"}
 title @s subtitle {text:"三つの風の鐘を、好きな順に",color:"gray"}
 tellraw @s {text:"三つの風の鐘を鳴らすと、東の門の島へ虹の橋が架かる。",color:"gray"}
 tellraw @s {text:"北西は標的で出る疾風の環、北東は金の錨の塔、南東は崩れる白い雲。",color:"gray"}
+function hook:stage/3/bell/guide
+function hook:fairy/say {text:"鐘は三つ。どれから行くかは好きにしていいよ。迷ったら鈴を鳴らしてね"}
 tellraw @s {text:"まずは足元の二体。掴んで奈落へ。爆弾兵は近づかせない。",color:"gray"}

@@ -6,4 +6,6 @@ scoreboard players set #ta hook.s3 500
 execute in hook:world run function hook:stage/3/ta/rings
 playsound minecraft:block.beacon.activate master @a ~ ~ ~ 2 1.6
 execute in hook:world run particle minecraft:end_rod 1074 77 -22 1.5 1.5 0.5 0.02 40 force @a
+function hook:guide/set {text:"環を渡って北西の島へ",x:1019.5,y:109,z:-41.5}
+execute in hook:world run particle minecraft:firework 1074 77 -22 2 2 1 0.1 40 force @a
 title @a[scores={hook.stage=3}] actionbar {text:"疾風の環! 着地せず北西の島まで",color:"aqua"}
