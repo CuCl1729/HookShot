@@ -1,6 +1,6 @@
 #> hook:stage/1/build_all
 # in hook:world から(stage/1/build。範囲は消してある)。生成: gen1.js。床の上面: 入口・大空洞・竪坑 y 50 / 広間・選鉱場・闘技場 y 70 / 通路・前室 y 96
-# 大空洞(ハブ)x 211〜249 z ±19 y 51〜111 → 南: 竪坑 A(垂直登攀)/ 北中段: 広間 B(ウェーブ)/ 東中段: 選鉱場 C(投げパズル)/ 東上段: 門 → 通路 → 前室 → 闘技場
+# 大空洞(ハブ)x 211〜249 z ±19 y 51〜111 → 北: 竪坑 A(垂直登攀)/ 南中段: 広間 B(ウェーブ)/ 東中段: 選鉱場 C(投げパズル)/ 東上段: 門 → 通路 → 前室 → 闘技場
 
 # 入口のトンネル x 200〜209(始まり 202.5)
 fill 199 49 -3 210 56 3 minecraft:deepslate_bricks
@@ -29,7 +29,7 @@ fill 239 50 7 243 50 11 minecraft:amethyst_block
 fill 239 51 7 243 51 11 minecraft:amethyst_cluster
 fill 217 50 7 221 50 11 minecraft:amethyst_block
 fill 217 51 7 221 51 11 minecraft:amethyst_cluster
-# 光の粒1: 北西の高い棚(柱の上から)
+# 光の粒1: 南西の高い棚(柱の上から)
 fill 211 97 15 215 99 19 minecraft:cobbled_deepslate
 summon item_display 213.5 100.3 17.5 {Tags:["hook.lore","hook.s1","hook.s1lore"],billboard:"center",brightness:{sky:15,block:15},Glowing:1b,item:{id:"minecraft:glowstone_dust",count:1},transformation:{translation:[0.0f,0.0f,0.0f],scale:[0.8f,0.8f,0.8f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}
 # 飾りと明かり
@@ -90,7 +90,7 @@ fill 298 70 -7 298 95 27 minecraft:deepslate_bricks
 fill 258 70 -7 298 95 -7 minecraft:deepslate_bricks
 fill 258 70 27 298 95 27 minecraft:deepslate_bricks
 fill 258 71 6 258 76 14 minecraft:air
-# 的1: 北の壁(前にトゲの堀)
+# 的1: 南の壁(前にトゲの堀)
 fill 264 70 22 274 70 26 minecraft:amethyst_block
 fill 264 71 22 274 71 26 minecraft:amethyst_cluster
 fill 268 73 27 270 75 27 minecraft:target
@@ -136,7 +136,7 @@ summon marker 298.5 74.5 20.5 {Tags:["hook.switch","hook.s1","hook.s1t3"],data:{
 fill 292 71 8 296 75 12 minecraft:iron_bars hollow
 fill 292 70 8 296 70 12 minecraft:amethyst_block
 # (鍵は檻が開いてから c/done が出す。格子は薄く、押し付けると檻の外からでも 2.5 以内に入るため)
-# 光の粒3: 南西の高い棚
+# 光の粒3: 北西の高い棚
 fill 259 88 -6 262 90 -3 minecraft:cobbled_deepslate
 summon item_display 260.5 91.3 -4.5 {Tags:["hook.lore","hook.s1","hook.s1lore"],billboard:"center",brightness:{sky:15,block:15},Glowing:1b,item:{id:"minecraft:glowstone_dust",count:1},transformation:{translation:[0.0f,0.0f,0.0f],scale:[0.8f,0.8f,0.8f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}
 

@@ -7,8 +7,10 @@ execute unless score #state hook.b3 matches 1..3 run return 0
 # 死亡(hook.b3d = 死亡数。core が hook.death を先に0にするので別に数える)。第2形態なら第2形態の頭から
 execute as @a[scores={hook.b3d=1..}] run function hook:boss/3/died
 execute unless score #state hook.b3 matches 1..3 run return 0
-# やり直しの判定は門の内側(x 1514〜)の広い箱。跳ねで壁を越えて場外へ落ちても、奈落から E へ戻るだけで戦闘は続く(前室へ戻ったときだけやり直し)
-execute in hook:world unless entity @a[scores={hook.stage=4},x=1514,y=0,z=-48,dx=100,dy=160,dz=96] run return run function hook:boss/3/reset
+# やり直しは前室(x 1514 より西の床の上)に立ったときと、門の内側(x 1514〜)の広い箱に誰もいないとき。跳ね・離しで西の壁を越えて
+# 宙にいる間や奈落へ落ちる途中はやり直さない(落ちれば E へ戻るだけで戦闘は続く)
+execute in hook:world if entity @a[scores={hook.stage=4},x=1496,y=62,z=-6,dx=17,dy=4,dz=12] run return run function hook:boss/3/reset
+execute in hook:world unless entity @a[scores={hook.stage=4},x=1496,y=0,z=-48,dx=118,dy=160,dz=96] run return run function hook:boss/3/reset
 execute unless entity @e[tag=hook.boss3] run return run function hook:boss/3/reset
 execute if score #inv hook.b3 matches 1.. run scoreboard players remove #inv hook.b3 1
 # 手下は投げても死なないので、呼ばれて 40 秒たったら虚へ還す(溜まらない。0 体なら王がまた呼ぶ)

@@ -7,6 +7,7 @@ scoreboard players set @s hook.spd 0
 execute if score #repull hook.temporary matches 1.. run scoreboard players operation @s hook.pull = #windup hook.cfg
 execute if score #repull hook.temporary matches 1.. run scoreboard players operation @s hook.spd = #repull hook.temporary
 scoreboard players set @s hook.stuck 0
+scoreboard players set @s hook.still 0
 scoreboard players set @s hook.hop 0
 # 先端(引き終わり・中断で hook:hook/release が消す。重い敵へは pull_tick が追わせる)
 kill @e[type=item_display,tag=hook.tip]

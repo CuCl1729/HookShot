@@ -1,1 +1,1 @@
-scoreboard players set #seq hook.dev 1013
+scoreboard players set #seq hook.dev 1025

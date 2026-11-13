@@ -18,6 +18,7 @@ scoreboard objectives add hook.cfg dummy
 scoreboard objectives add hook.held dummy
 scoreboard objectives add hook.spd dummy
 scoreboard objectives add hook.stuck dummy
+scoreboard objectives add hook.still dummy
 scoreboard objectives add hook.fuel dummy
 scoreboard objectives add hook.hop dummy
 scoreboard objectives add hook.hx dummy

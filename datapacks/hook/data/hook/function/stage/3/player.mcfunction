@@ -3,6 +3,9 @@
 # 落ちた tick(player/tick が戻した直後で hook.y がまだ ..31)
 execute if score @s hook.y matches ..31 run function hook:stage/3/fell
 execute unless score #lesson hook.s3 matches 2.. run function hook:stage/3/lesson
+# 先回りは状態で止める(離しで飛び越えても): 稽古の前に出発の島 S0(x ..1016)の外へ、鐘3つの前に門の島 G へ来たら戻す
+execute unless score #lesson hook.s3 matches 2.. if entity @s[x=1018,y=0,z=-64,dx=300,dy=200,dz=128] run return run function hook:cp/back {t:"まずは稽古。島のゾンビを鉤で縛ってから。"}
+execute unless score #bells hook.s3 matches 3 if entity @s[x=1272,y=96,z=-9,dx=24,dy=10,dz=18] run return run function hook:cp/back {t:"風の鐘が三つ鳴るまで、門の島の番兵は来ない。"}
 execute unless score #hub hook.s3 matches 1 if entity @s[x=1066,y=70,z=-9,dx=28,dy=5,dz=18] run function hook:stage/3/arrive/hub
 execute unless score #hid hook.s3 matches 1 if entity @s[x=1074,y=51,z=-4,dx=8,dy=4,dz=8] run function hook:stage/3/arrive/hidden
 execute unless score #nisl hook.s3 matches 1 if entity @s[x=1012,y=109,z=-47,dx=14,dy=5,dz=10] run function hook:stage/3/arrive/n

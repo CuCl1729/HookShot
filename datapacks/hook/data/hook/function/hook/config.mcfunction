@@ -20,6 +20,8 @@ scoreboard players set #maxt hook.cfg 40
 # 詰まり: 速さ(各軸の絶対値の和)が #stuck_v 未満の tick が #stuck 続いたら終了
 scoreboard players set #stuck hook.cfg 3
 scoreboard players set #stuck_v hook.cfg 15
+# 位置が全く変わらない tick(クライアントの詰まりは 1〜2 tick)が #still 続いたら塞がれているとみなして終了
+scoreboard players set #still hook.cfg 6
 # 終了時の跳ね: 上 = #hop_vy + (錨の高さ − 足の高さ)/#hop_dy(#hop_vymax まで)、横 = 見ている水平方向 × #hop_h
 scoreboard players set #hop_vy hook.cfg 100
 scoreboard players set #hop_dy hook.cfg 6

@@ -97,9 +97,14 @@ function dist(a, b) {
 }
 const D = (a, b) => dist(S[a].box, S[b].box);
 const errs = [];
-const needFar = (a, others, lim) => { for (const o of others) if (o !== a && D(a, o) < lim) errs.push(`${a}-${o} ${D(a, o).toFixed(1)} < ${lim}`); };
+// needFar は「立てる島 a から 1 回のフック(射程 40 + 跳ね)で届かない」の検査。離し(引かれた勢いのまま飛ぶ)は撃った所から 47〜58 届くが、
+// 錨(= 射程 40 以内の島)を越えて進めるのは約 26 まで(2.4 から空気抵抗で止まるまで)。島どうしが REL より離れていれば、間の島を錨にした離しでも
+// 先回りは「錨にした島から 26 以内」に限られる = その島が順路の一部なら近道でしかない。距離で塞げない先回り(稽古前に S0 を出る・鐘3つ前の G)は
+// stage/3/player が状態で戻す(2026-11-14 の方針: 離しの到達距離は削らず、進行は状態で縛る)
+const REL = 26 + 2;
+const needFar = (a, others, lim) => { assert(lim > REL, `needFar ${a} lim ${lim} <= REL`); for (const o of others) if (o !== a && D(a, o) < lim) errs.push(`${a}-${o} ${D(a, o).toFixed(1)} < ${lim}`); };
 const needNear = (pairs, lim = 36) => { for (const [a, b] of pairs) if (D(a, b) > lim) errs.push(`hop ${a}-${b} ${D(a, b).toFixed(1)} > ${lim}`); };
-// 跳ね(2026-11 改定、CLAUDE.md の契約の暫定値: 前へ約 4.1 = 旧 2.7 + 1.4)とフロートの横ずれで、錨が届く距離の余裕が旧より増える。J を上乗せして検査する
+// 跳ね(2026-11-14 実測: 上 6〜7・前 約 3.5)とフロートの横ずれで、錨が届く距離の余裕が増える。J を上乗せして検査する
 const J = 2;
 const names = Object.keys(S);
 const stat = names.filter((n) => S[n].phase === "static");
@@ -118,7 +123,7 @@ needNear([["S0", "R0"], ["R0", "H"], ["H", "HI"], ["HI", "HR"], ["H", "TA1"], ["
   ["L2", "L3"], ["L3", "L4"], ["L4", "DK"], ["H", "C1"], ["C1", "C2"], ["C2", "C3"], ["C3", "C4a"],
   ["C3", "C4b"], ["C4a", "C5a"], ["C4b", "C5b"], ["C5a", "SI"], ["C5b", "SI"], ["H", "B1"], ["B1", "B2"],
   ["B2", "MI"], ["MI", "B3"], ["B3", "B4"], ["B4", "B5"], ["B5", "G"]]);
-// (b) 薄い足場: 跳ねで前へ約 4 進む(暫定値)ので、錨を撃つ向きの奥行きが 4 未満だと越えて落ちる。[足場, 軸, 最小の奥行き] (L1 は塔の壁に接しているので対象外)
+// (b) 薄い足場: 跳ねで前へ約 3.5 進む(乱れた回は 4 を超える)ので、錨を撃つ向きの奥行きが 4 未満だと越えて落ちる。[足場, 軸, 最小の奥行き] (L1 は塔の壁に接しているので対象外)
 for (const [n, ax, min] of [["M1", 0, 4], ["M2", 0, 4], ["L2", 2, 5], ["L3", 0, 5], ["L4", 2, 5]]) {
   const bx = S[n].box, d = bx[ax + 3] - bx[ax] + 1;
   if (d < min) errs.push(`depth ${n} ${d} < ${min}`);
