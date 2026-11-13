@@ -3,12 +3,12 @@
 # 全ステージの ranks.s1〜s4({r:"S",c:"gold",g:3,pts:N}。g = S3/A2/B1/C0)を並べ、平均から総合評価を出す。無いステージは「―」
 tellraw @a[scores={hook.stage=5}] {text:"―― 戦績 ――",color:"gold",bold:true}
 tellraw @a[scores={hook.stage=5}] {text:"虚の玉座(ボス戦):",color:"gray"}
-# shortcut: ボス戦の閾値は推定(撃破 10・コンボ 3・4〜5 分で A 程度)。通しプレイの実測で直す
-function hook:score/show {s:-60,a:-180,b:-300}
+# shortcut: 投げでは倒せなくなり撃破数・コンボはほぼ0。点はほぼ -秒なので、閾値は所要時間の推定(ボス戦 6〜10 分)で S 6分・A 9分・B 12分。通しプレイの実測で直す
+function hook:score/show {s:-360,a:-540,b:-720}
 data modify storage hook: ranks.s4 set value {r:"C",c:"gray",g:0}
-execute if score #pts hook.score matches -300.. run data modify storage hook: ranks.s4 set value {r:"B",c:"aqua",g:1}
-execute if score #pts hook.score matches -180.. run data modify storage hook: ranks.s4 set value {r:"A",c:"red",g:2}
-execute if score #pts hook.score matches -60.. run data modify storage hook: ranks.s4 set value {r:"S",c:"gold",g:3}
+execute if score #pts hook.score matches -720.. run data modify storage hook: ranks.s4 set value {r:"B",c:"aqua",g:1}
+execute if score #pts hook.score matches -540.. run data modify storage hook: ranks.s4 set value {r:"A",c:"red",g:2}
+execute if score #pts hook.score matches -360.. run data modify storage hook: ranks.s4 set value {r:"S",c:"gold",g:3}
 execute store result storage hook: ranks.s4.pts int 1 run scoreboard players get #pts hook.score
 function hook:stage/5/rank_line {s:"s1",n:"水晶坑道"}
 function hook:stage/5/rank_line {s:"s2",n:"歯車工場"}

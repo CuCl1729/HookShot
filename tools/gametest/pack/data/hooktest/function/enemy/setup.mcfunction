@@ -2,4 +2,5 @@
 forceload add 2990 2990 3050 3010
 scoreboard players set #we hook.temporary 0
 scoreboard players set #rdye hook.temporary 0
+scoreboard players set #se hook.temporary 0
 function hooktest:enemy/poll

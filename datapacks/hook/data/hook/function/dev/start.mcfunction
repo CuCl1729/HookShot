@@ -5,3 +5,5 @@ execute in hook:world run forceload add 1792 -16 1887 15
 scoreboard players set @s hook.stage 99
 function hook:cp/set {id:99,x:1806.5,y:64,z:0.5,yaw:-90}
 function hook:cp/return
+function hook:player/give_hook
+function hook:player/give_bell

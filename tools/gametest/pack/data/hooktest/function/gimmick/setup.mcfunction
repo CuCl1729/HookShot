@@ -2,4 +2,5 @@
 forceload add 3030 2990 3100 3015
 scoreboard players set #wg hook.temporary 0
 scoreboard players set #rdyg hook.temporary 0
+scoreboard players set #sg hook.temporary 0
 function hooktest:gimmick/poll

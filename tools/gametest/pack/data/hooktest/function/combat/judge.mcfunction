@@ -10,3 +10,4 @@ execute unless entity @e[tag=hooktest.k,tag=hook.stun,x=3106.5,y=60,z=3000,dx=20
 execute unless entity @e[tag=hooktest.d] unless entity @e[tag=hooktest.b] run say HOOKTEST combat.bomb_explodes PASS
 execute if entity @e[tag=hooktest.d] run say HOOKTEST combat.bomb_explodes FAIL zombie survived the thrown bomber
 execute if entity @e[tag=hooktest.b] run say HOOKTEST combat.bomb_explodes FAIL thrown bomber did not explode
+execute unless entity @e[tag=hooktest.k,tag=hook.stun,x=3106.5,y=60,z=3000,dx=20,dy=10,dz=7] if entity @e[tag=hooktest.k] run function hooktest:combat/dbg
