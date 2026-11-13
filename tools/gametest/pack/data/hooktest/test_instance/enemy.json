@@ -1,0 +1,1 @@
+{"type":"minecraft:function","environment":"hooktest:enemy","function":"minecraft:always_pass","max_ticks":1800,"setup_ticks":1700,"structure":"minecraft:empty"}

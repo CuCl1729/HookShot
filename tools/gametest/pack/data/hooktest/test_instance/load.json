@@ -1,0 +1,1 @@
+{"type":"minecraft:function","environment":"hooktest:load","function":"minecraft:always_pass","max_ticks":50,"setup_ticks":10,"structure":"minecraft:empty"}
