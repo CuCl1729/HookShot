@@ -5,3 +5,4 @@ scoreboard players add #combo hook.score 1
 scoreboard players operation #combo_t hook.score = #combo_t hook.cfg
 execute if score #combo hook.score > #combo_max hook.score run scoreboard players operation #combo_max hook.score = #combo hook.score
 execute if score #combo hook.score matches 2.. run function hook:score/combo
+execute at @s run function hook:fx/kill

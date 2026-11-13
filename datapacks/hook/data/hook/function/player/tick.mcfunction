@@ -2,6 +2,9 @@
 # @s = プレイヤー(実行位置も @s)
 # hook.held = 右クリックを押し続けている(hook/use が 2 にする。離すと 2 tick で 0)
 execute if score @s hook.held matches 1.. run scoreboard players remove @s hook.held 1
+# hook.bell = ルミの鈴の押しっぱなし(guide/use が 2 にする)。hook.ask = 道案内の光の筋の残り tick
+execute if score @s hook.bell matches 1.. run scoreboard players remove @s hook.bell 1
+execute if score @s hook.ask matches 1.. run function hook:guide/beam
 function hook:player/vel
 # hook.sneak_new = スニークを押した瞬間の tick だけ(引き・掴みの中断用。フロート中に撃っても押しっぱなしでは切れない)
 tag @s remove hook.sneak_new
@@ -15,9 +18,10 @@ execute unless entity @s[tag=hook.pulling] unless score @s hook.hop matches 1.. 
 execute unless entity @e[tag=hook.yanking] unless entity @e[tag=hook.grabbed] run tag @s remove hook.owner
 execute if entity @s[tag=hook.rec] run function hook:dev/rec_tick
 execute store result score @s hook.y run data get entity @s Pos[1]
-execute if dimension hook:world if score @s hook.y matches ..31 run function hook:cp/return
-# 攻撃不可: エンティティ操作距離0で敵に届かない(base は保存されるが、既存プレイヤー用に定期的にも)
+execute if dimension hook:world if score @s hook.y matches ..31 run function hook:player/fell
+# 攻撃不可: エンティティ操作距離0で敵に届かない(base は保存されるが、既存プレイヤー用に定期的にも)。難易度の最大体力も
 execute if score #tick hook.temporary matches 0 run attribute @s minecraft:entity_interaction_range base set 0
+execute if score #tick hook.temporary matches 0 run function hook:diff/player
 # 満腹度が減ると体力が自然回復しなくなるので、満腹度回復を常に付ける(100 tick ごとに 110 tick 分。死亡で消えても次の周期で戻る)
 # saturation は即時効果なので effect give の時間は秒でなく tick(実測: 30 で 1.5 秒)
 execute if score #tick hook.temporary matches 0 run effect give @s minecraft:saturation 110 0 true

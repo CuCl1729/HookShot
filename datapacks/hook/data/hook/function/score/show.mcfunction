@@ -10,6 +10,7 @@ scoreboard players operation #a hook.temporary *= #20 hook.constant
 scoreboard players operation #pts hook.score += #a hook.temporary
 scoreboard players operation #pts hook.score -= #sec hook.score
 tellraw @a [{text:"撃破 ",color:"gray"},{score:{name:"#kills",objective:"hook.score"},color:"white"},{text:"  最大コンボ ",color:"gray"},{score:{name:"#combo_max",objective:"hook.score"},color:"white"},{text:"  時間 ",color:"gray"},{score:{name:"#sec",objective:"hook.score"},color:"white"},{text:"秒  点 ",color:"gray"},{score:{name:"#pts",objective:"hook.score"},color:"white"}]
+function hook:score/show_diff with storage hook: diff
 $execute if score #pts hook.score matches $(s).. run return run function hook:score/rank {r:"S",c:"gold"}
 $execute if score #pts hook.score matches $(a).. run return run function hook:score/rank {r:"A",c:"red"}
 $execute if score #pts hook.score matches $(b).. run return run function hook:score/rank {r:"B",c:"aqua"}

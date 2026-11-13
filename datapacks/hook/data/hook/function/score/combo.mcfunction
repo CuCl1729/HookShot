@@ -8,3 +8,4 @@ scoreboard players add #p hook.temporary 6
 execute if score #p hook.temporary matches 21.. run scoreboard players set #p hook.temporary 20
 execute store result storage hook: tmp.p float 0.1 run scoreboard players get #p hook.temporary
 function hook:score/ding with storage hook: tmp
+function hook:fx/combo
