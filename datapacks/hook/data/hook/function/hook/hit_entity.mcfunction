@@ -1,5 +1,6 @@
 #> hook:hook/hit_entity
-# @s = プレイヤー。tag=hook.hit = 当たった敵(実行位置に一番近いものを使う)
+# @s = プレイヤー。tag=hook.hit = 当たった敵(実行位置に一番近いものを使う)。当てた時点でフロートの燃料を満タンに
+scoreboard players operation @s hook.fuel = #fuel hook.cfg
 execute at @s run playsound minecraft:entity.fishing_bobber.retrieve player @a ~ ~ ~ 1 1
 particle minecraft:electric_spark ~ ~ ~ 0.2 0.2 0.2 0 10 force @a
 # 能力2 スタンチェイン
