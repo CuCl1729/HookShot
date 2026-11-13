@@ -18,3 +18,5 @@ execute store result score @s hook.y run data get entity @s Pos[1]
 execute if dimension hook:world if score @s hook.y matches ..31 run function hook:cp/return
 # 攻撃不可: エンティティ操作距離0で敵に届かない(base は保存されるが、既存プレイヤー用に定期的にも)
 execute if score #tick hook.temporary matches 0 run attribute @s minecraft:entity_interaction_range base set 0
+# 満腹度が減ると体力が自然回復しなくなるので、満腹度回復を常に付ける(5秒ごとに10秒分。死亡で消えても次の周期で戻る)
+execute if score #tick hook.temporary matches 0 run effect give @s minecraft:saturation 10 0 true
