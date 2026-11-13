@@ -134,12 +134,17 @@ fill 1206 55 -33 1206 55 -29 minecraft:calcite
 # L2
 fill 1208 72 -37 1214 72 -35 minecraft:smooth_quartz
 fill 1209 71 -36 1213 71 -36 minecraft:calcite
+fill 1208 69 -37 1214 71 -35 minecraft:quartz_bricks
+fill 1207 77 -36 1207 77 -36 minecraft:gold_block
 # L3
-fill 1215 86 -34 1217 86 -28 minecraft:smooth_quartz
-fill 1216 85 -33 1216 85 -29 minecraft:calcite
+fill 1222 86 -34 1224 86 -28 minecraft:smooth_quartz
+fill 1223 85 -33 1223 85 -29 minecraft:calcite
+fill 1222 83 -34 1224 85 -28 minecraft:quartz_bricks
+fill 1221 91 -32 1221 91 -32 minecraft:gold_block
 # L4
-fill 1208 100 -27 1214 100 -25 minecraft:smooth_quartz
-fill 1209 99 -26 1213 99 -26 minecraft:calcite
+fill 1208 100 -18 1214 100 -16 minecraft:smooth_quartz
+fill 1209 99 -17 1213 99 -17 minecraft:calcite
+fill 1215 105 -17 1215 105 -17 minecraft:gold_block
 # DK
 fill 1204 116 -38 1218 116 -28 minecraft:smooth_quartz
 fill 1205 115 -37 1217 115 -29 minecraft:calcite
@@ -149,6 +154,7 @@ fill 1213 117 -31 1213 119 -31 minecraft:quartz_pillar
 fill 1209 120 -31 1213 120 -31 minecraft:chiseled_quartz_block
 fill 1211 120 -31 1211 120 -31 minecraft:target
 fill 1211 119 -31 1211 119 -31 minecraft:bell[attachment=ceiling,facing=east]
+fill 1211 120 -27 1211 120 -27 minecraft:gold_block
 # SI
 fill 1180 78 30 1194 78 44 minecraft:smooth_quartz
 fill 1181 77 31 1193 77 43 minecraft:calcite
@@ -172,7 +178,7 @@ summon marker 1019.5 112.5 -42.5 {Tags:["hook.switch","hook.s3m"],data:{f:"hook:
 summon marker 1211.5 120.5 -30.5 {Tags:["hook.switch","hook.s3m"],data:{f:"hook:stage/3/bell/t"}}
 summon marker 1189.5 82.5 37.5 {Tags:["hook.switch","hook.s3m"],data:{f:"hook:stage/3/bell/s"}}
 # 光の粒(寄り道の先。tick が近接を見て hook:lore/pick を呼ぶ)
-kill @e[type=item_display,tag=hook.lore]
+kill @e[type=item_display,tag=hook.lore,x=999,y=39,z=-49,dx=302,dy=82,dz=98]
 summon item_display 1076.5 52.3 2.5 {Tags:["hook.lore","hook.lore31"],item:{id:"minecraft:glowstone_dust",count:1},item_display:"ground",Glowing:1b,transformation:{translation:[0.0f,0.0f,0.0f],scale:[0.9f,0.9f,0.9f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}
 summon item_display 1182.5 79.3 42.5 {Tags:["hook.lore","hook.lore32"],item:{id:"minecraft:glowstone_dust",count:1},item_display:"ground",Glowing:1b,transformation:{translation:[0.0f,0.0f,0.0f],scale:[0.9f,0.9f,0.9f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}
 summon item_display 1014.5 109.3 -46.5 {Tags:["hook.lore","hook.lore33"],item:{id:"minecraft:glowstone_dust",count:1},item_display:"ground",Glowing:1b,transformation:{translation:[0.0f,0.0f,0.0f],scale:[0.9f,0.9f,0.9f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}

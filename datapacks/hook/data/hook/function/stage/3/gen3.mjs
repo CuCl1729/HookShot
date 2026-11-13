@@ -55,17 +55,24 @@ island("N", 1012, 1026, -47, -37, 108);
 S.N.cmds.push(...bellArch(1017, 1021, 108, -43));
 S.N.box = [1012, 106, -47, 1026, 112, -37];
 island("W1", 1108, 1120, -30, -18, 72);
-add("M1", [1134, 53, -25, 1134, 94, -23], "static", []); // 動く範囲(ブロックは mv/place)
-add("M2", [1164, 53, -25, 1164, 94, -23], "static", []);
+add("M1", [1132, 53, -25, 1134, 94, -23], "static", []); // 動く範囲(ブロックは mv/place)
+add("M2", [1163, 53, -25, 1165, 94, -23], "static", []);
 island("W2", 1181, 1191, -30, -20, 58);
 add("TC", [1208, 50, -34, 1214, 113, -28], "static", [fill(1208, 50, -34, 1214, 113, -28, "quartz_bricks"),
   fill(1208, 56, -31, 1208, 108, -31, "light_blue_stained_glass"), fill(1214, 56, -31, 1214, 108, -31, "light_blue_stained_glass")]);
 island("L1", 1205, 1207, -34, -28, 56);
 island("L2", 1208, 1214, -37, -35, 72);
-island("L3", 1215, 1217, -34, -28, 86);
-island("L4", 1208, 1214, -27, -25, 100);
-island("DK", 1204, 1218, -38, -28, 116); // 棚 L4(z -27〜-25)が頂の南面の外へ出るように
-S.DK.cmds.push(...bellArch(1209, 1213, 116, -31));
+island("L3", 1222, 1224, -34, -28, 86); // 棚は塔から離す: 真下近くから撃つと跳ねの横が縁の側面に止められて乗れない(斜めに 8 以上離す)
+island("L4", 1208, 1214, -18, -16, 100);
+// 棚は真下近くから撃つので、縁の下が段々(ひさし)だと跳ねで頭を打って落ちる。縁の下 3 段を平らな壁にする
+for (const n of ["L2", "L3"]) { const [x1, , z1, x2, T, z2] = S[n].box; S[n].cmds.push(fill(x1, T - 3, z1, x2, T - 1, z2, "quartz_bricks")); S[n].box[1] = T - 3; }
+// 上の棚の縁を下から撃つと縁の下で止まって乗れない(跳ねの横が側面に止められる)。棚の縁のすぐ外の上に浮かぶ金の錨を撃てば、手前 3 マスで止まっても縁より上にいる(錨を棚の真上に置くと線が棚に当たる)
+// (フック点なので reach の箱には入れない。錨の上には立てない)
+S.L2.cmds.push(fill(1207, 77, -36, 1207, 77, -36, "gold_block"));
+S.L3.cmds.push(fill(1221, 91, -32, 1221, 91, -32, "gold_block"));
+S.L4.cmds.push(fill(1215, 105, -17, 1215, 105, -17, "gold_block"));
+island("DK", 1204, 1218, -38, -28, 116); // 棚 L4(z -18〜-16)から頂の南面の縁を斜めに撃つ
+S.DK.cmds.push(...bellArch(1209, 1213, 116, -31), fill(1211, 120, -27, 1211, 120, -27, "gold_block"));
 S.DK.box = [1204, 114, -38, 1218, 120, -28];
 const CH = [["C1", 1, 1104, 70, 20], ["C2", 2, 1120, 73, 30], ["C3", 3, 1136, 74, 40],
   ["C4a", 4, 1150, 82, 28], ["C4b", 4, 1152, 68, 42], ["C5a", 5, 1167, 84, 24], ["C5b", 5, 1168, 66, 44]];
@@ -97,7 +104,7 @@ const stat = names.filter((n) => S[n].phase === "static");
 const chase = CH.map((c) => c[0]);
 needFar("S0", stat, 46);                                           // 稽古の前は出発の島から出られない
 needFar("N", [...stat, "R0"], 46);                                            // 北の島は環でしか行けない
-needFar("G", [...stat, ...names.filter((n) => ["ta", "lesson"].includes(S[n].phase))], 50);
+needFar("G", [...stat, ...names.filter((n) => ["ta", "lesson"].includes(S[n].phase))], 47); // 射程 40 + 余裕(L3 から 47.5)
 needFar("SI", stat.filter((n) => !chase.includes(n)), 46);         // 南の島は崩れ雲からだけ
 for (const c of chase) needFar(c, ["W2", "M1", "M2", "TC", "L1", "L2", "L3", "L4", "DK", "N", "S0"], 44);
 needFar("W2", ["H", "W1", "HI", "HR", "M1", ...chase], 46);        // 塔の麓は動く錨を渡る(M2 からだけ)
@@ -137,7 +144,7 @@ a.push("function hook:stage/3/chase/build", "function hook:stage/3/mv/step",
   'summon marker 1211.5 120.5 -30.5 {Tags:["hook.switch","hook.s3m"],data:{f:"hook:stage/3/bell/t"}}',
   'summon marker 1189.5 82.5 37.5 {Tags:["hook.switch","hook.s3m"],data:{f:"hook:stage/3/bell/s"}}',
   "# 光の粒(寄り道の先。tick が近接を見て hook:lore/pick を呼ぶ)",
-  "kill @e[type=item_display,tag=hook.lore]",
+  "kill @e[type=item_display,tag=hook.lore,x=999,y=39,z=-49,dx=302,dy=82,dz=98]", // 自ステージの粒だけ(大きさ0なので x y z を全部書く)
   'summon item_display 1076.5 52.3 2.5 {Tags:["hook.lore","hook.lore31"],item:{id:"minecraft:glowstone_dust",count:1},item_display:"ground",Glowing:1b,transformation:{translation:[0.0f,0.0f,0.0f],scale:[0.9f,0.9f,0.9f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}',
   'summon item_display 1182.5 79.3 42.5 {Tags:["hook.lore","hook.lore32"],item:{id:"minecraft:glowstone_dust",count:1},item_display:"ground",Glowing:1b,transformation:{translation:[0.0f,0.0f,0.0f],scale:[0.9f,0.9f,0.9f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}',
   'summon item_display 1014.5 109.3 -46.5 {Tags:["hook.lore","hook.lore33"],item:{id:"minecraft:glowstone_dust",count:1},item_display:"ground",Glowing:1b,transformation:{translation:[0.0f,0.0f,0.0f],scale:[0.9f,0.9f,0.9f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}');
