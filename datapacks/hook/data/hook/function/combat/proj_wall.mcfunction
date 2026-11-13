@@ -1,4 +1,4 @@
 #> hook:combat/proj_wall
-# @s = 目印 hook.proj。壁に高速で当たった → 投げた敵を撃破
-execute as @e[tag=hook.thrown] at @s run function hook:combat/slam
-kill @s
+# @s = 目印 hook.proj。壁に当たった → 投げた敵は跳ね返って怯む(死なない。爆弾兵は爆発)
+tp @s ~ ~ ~ ~180 ~
+function hook:combat/proj_land

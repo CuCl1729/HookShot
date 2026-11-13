@@ -1,6 +1,6 @@
 #> hook:combat/yank_tick
 # @s = 引き寄せ中の軽い敵(実行位置も @s)。掴む位置(hook.hp)へ 0.5 刻みで tp。加速 #y_v0 → +#y_acc → #y_vmax。
-# 途中で壁・他の敵に #slam_v 以上でぶつかると叩きつけで撃破
+# 途中で壁に #slam_v 以上でぶつかると放して怯む。怯んでいない他の敵に #slam_v 以上で触れると相手を弾く(どちらも死なない)
 execute unless entity @a[tag=hook.owner] run return run function hook:combat/drop
 scoreboard players operation @s hook.mv = #mv_t hook.cfg
 data modify entity @s Motion set value [0d,0d,0d]

@@ -1,4 +1,4 @@
 #> hook:combat/yank_blocked
-# @s = 引き寄せ中に壁へ当たった敵。速ければ叩きつけで撃破、遅ければ放す
-execute if score @s hook.spd >= #slam_v hook.cfg run return run function hook:combat/slam
+# @s = 引き寄せ中に壁へ当たった敵。放す。速ければ怯む(叩きつけ。死なない)
 function hook:combat/drop
+execute if score @s hook.spd >= #slam_v hook.cfg run function hook:combat/slam

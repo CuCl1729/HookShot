@@ -16,4 +16,5 @@ particle minecraft:explosion ~ ~1 ~ 0 0 0 0 1 force @a
 playsound minecraft:entity.generic.explode hostile @a ~ ~ ~ 1 1.2
 # 小衝撃波: 半径 4 の軽い敵を外向き・少し上へ弾く(#shock_v)
 particle minecraft:sweep_attack ~ ~1 ~ 1.5 0.2 1.5 0 12 force @a
+scoreboard players operation #kv hook.temporary = #shock_v hook.cfg
 execute as @e[tag=hook.enemy,tag=!hook.heavy,tag=!hook.boss,tag=!hook.grabbed,tag=!hook.thrown,distance=..4] at @s facing entity @e[tag=hook.anchor,limit=1] feet rotated ~180 -30 run function hook:combat/fling

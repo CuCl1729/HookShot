@@ -21,13 +21,14 @@ scoreboard players set #maxt hook.cfg 40
 scoreboard players set #stuck hook.cfg 3
 scoreboard players set #stuck_v hook.cfg 15
 # 終了時の跳ね: 上 = #hop_vy + (錨の高さ − 足の高さ)/#hop_dy(#hop_vymax まで)、横 = 見ている水平方向 × #hop_h
-scoreboard players set #hop_vy hook.cfg 45
+scoreboard players set #hop_vy hook.cfg 70
 scoreboard players set #hop_dy hook.cfg 6
-scoreboard players set #hop_vymax hook.cfg 110
+scoreboard players set #hop_vymax hook.cfg 120
 scoreboard players set #hop_h hook.cfg 45
 # 跳ねの速度に寄せる tick 数
 scoreboard players set #hop_t hook.cfg 8
-# フロート(空中でスニーク)の燃料 tick。着地・到着で満タン
+# フロート(空中でスニーク)の燃料 tick。着地・到着で満タン。燃料がある間は #float_vy(×100 ブロック/tick)でゆっくり上がる
+scoreboard players set #float_vy hook.cfg 5
 scoreboard players set #fuel hook.cfg 40
 
 # --- 戦闘 ---
@@ -38,8 +39,10 @@ scoreboard players set #y_vmax hook.cfg 150
 # 投げ: 1 tick に 0.5 × #throw_steps 進む × #throw_t tick
 scoreboard players set #throw_steps hook.cfg 4
 scoreboard players set #throw_t hook.cfg 16
-# 叩きつけ: この速さ以上で壁・敵にぶつかると撃破
+# 叩きつけ: この速さ以上で壁にぶつかると怯む / 敵に触れると相手を弾く(どちらも死なない)
 scoreboard players set #slam_v hook.cfg 70
+# 弾く速さ(投げた敵が当たった敵・叩きつけで触れた敵。斜め上 25 度。投げた敵自身はその 1/3)。怯みは hook:hook/stun の 60 tick
+scoreboard players set #knock_v hook.cfg 100
 # 衝撃波(能力1)で弾く速さ。半径 4 は hook:hook/impact に直書き
 scoreboard players set #shock_v hook.cfg 120
 # フックで動かされた後、ギミックで死ねる tick
