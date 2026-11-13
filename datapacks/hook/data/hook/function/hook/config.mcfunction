@@ -28,7 +28,7 @@ scoreboard players set #hop_h hook.cfg 45
 # 跳ねの速度に寄せる tick 数
 scoreboard players set #hop_t hook.cfg 8
 # フロート(空中でスニーク)の燃料 tick。着地・到着で満タン。燃料がある間は #float_vy(×100 ブロック/tick)でゆっくり上がる
-scoreboard players set #float_vy hook.cfg 5
+scoreboard players set #float_vy hook.cfg 9
 scoreboard players set #fuel hook.cfg 40
 
 # --- 戦闘 ---
