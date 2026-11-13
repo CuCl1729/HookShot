@@ -7,4 +7,7 @@ kill @e[tag=hook.b3x]
 tag @a remove hook.b3hit
 function hook:core/call {f:"hook:boss/3/bar_hide"}
 data modify storage hook: built.s4 set value 0b
+tag @a[scores={hook.stage=4,hook.cp=41}] add hook.cp_quiet
 execute as @a[scores={hook.stage=4,hook.cp=41}] run function hook:cp/set {id:40,x:1502.5,y:64,z:0.5,yaw:-90}
+tag @a remove hook.cp_quiet
+scoreboard players set #gd hook.b3 0

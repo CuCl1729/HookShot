@@ -23,6 +23,9 @@ fill 1548 64 2 1548 67 2 minecraft:crying_obsidian
 fill 1552 64 -2 1552 67 -2 minecraft:crying_obsidian
 fill 1528 64 -10 1528 67 -10 minecraft:crying_obsidian
 fill 1572 64 10 1572 67 10 minecraft:crying_obsidian
+# E の背の壁(門の塔。高さ 9)。第2形態でも残し、E の柱へ東から跳んだ勢い(前へ約 4、高さ最大約 8。計算値)で E の西の縁を越えて落ちないように
+fill 1516 64 -3 1516 72 3 minecraft:polished_blackstone_bricks
+fill 1516 64 -1 1516 66 1 minecraft:air
 # T 玉座
 fill 1579 63 -3 1584 63 3 minecraft:deepslate_tiles
 fill 1584 64 -2 1584 67 2 minecraft:crying_obsidian

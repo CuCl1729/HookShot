@@ -8,5 +8,7 @@ scoreboard players set #stag hook.b3 120
 effect give @e[tag=hook.boss3] minecraft:glowing 6 0 true
 execute at @e[tag=hook.boss3] run particle minecraft:electric_spark ~ ~3 ~ 0.8 0.8 0.8 0 40 force @a
 execute at @e[tag=hook.boss3] run playsound minecraft:block.anvil.place hostile @a ~ ~ ~ 2 0.5
+execute at @e[tag=hook.boss3] run particle minecraft:crit ~ ~2.5 ~ 1.2 1.2 1.2 0.6 60 force @a
+execute at @e[tag=hook.boss3] run playsound minecraft:entity.zombie_villager.cure hostile @a ~ ~ ~ 1 1.6
 execute if score #state hook.b3 matches 1 run title @a[scores={hook.stage=4}] actionbar {text:"怯んだ! 今のうちに突っ込んでトゲかプレスへ突き飛ばせ",color:"yellow"}
 execute if score #state hook.b3 matches 3 run title @a[scores={hook.stage=4}] actionbar {text:"縛った! 突き飛ばして奈落へ落とせ",color:"yellow"}

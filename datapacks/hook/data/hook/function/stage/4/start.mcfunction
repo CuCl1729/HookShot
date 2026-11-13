@@ -10,8 +10,7 @@ execute in hook:world run function hook:boss/3/reset
 function hook:score/start
 function hook:cp/set {id:40,x:1502.5,y:64,z:0.5,yaw:-90}
 function hook:cp/return
-title @s times 10 60 20
-title @s title {text:"虚の玉座",color:"dark_purple"}
-title @s subtitle {text:"太陽石の欠片 2/3",color:"gold"}
-tellraw @s {text:"最後の欠片は、虚の王が持っている。",color:"gray",italic:true}
-tellraw @s {text:"ヒント: トゲ、プレス、奈落。覚えた技をすべて使おう。",color:"gray"}
+function hook:fx/stage_title {name:"虚の玉座",sub:"太陽石の欠片 2/3"}
+tellraw @s {text:"雲の上の玉座。最後の欠片は、虚の王が持っている。",color:"gray",italic:true}
+function hook:fairy/say {text:"この先に王がいる……欠片の気配、すごく強いよ"}
+function hook:guide/set {text:"門をくぐって玉座の間へ",x:1518.5,y:64,z:0.5}

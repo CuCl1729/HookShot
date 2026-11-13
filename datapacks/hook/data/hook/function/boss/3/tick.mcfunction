@@ -7,10 +7,14 @@ execute unless score #state hook.b3 matches 1..3 run return 0
 # 死亡(hook.b3d = 死亡数。core が hook.death を先に0にするので別に数える)。第2形態なら第2形態の頭から
 execute as @a[scores={hook.b3d=1..}] run function hook:boss/3/died
 execute unless score #state hook.b3 matches 1..3 run return 0
-# やり直しの判定は門の内側の橋(x 1515)も含める
-execute in hook:world unless entity @a[scores={hook.stage=4},x=1514,y=0,z=-17,dx=71,dy=128,dz=34] run return run function hook:boss/3/reset
+# やり直しの判定は門の内側(x 1514〜)の広い箱。跳ねで壁を越えて場外へ落ちても、奈落から E へ戻るだけで戦闘は続く(前室へ戻ったときだけやり直し)
+execute in hook:world unless entity @a[scores={hook.stage=4},x=1514,y=0,z=-48,dx=100,dy=160,dz=96] run return run function hook:boss/3/reset
 execute unless entity @e[tag=hook.boss3] run return run function hook:boss/3/reset
 execute if score #inv hook.b3 matches 1.. run scoreboard players remove #inv hook.b3 1
+# 手下は投げても死なないので、呼ばれて 40 秒たったら虚へ還す(溜まらない。0 体なら王がまた呼ぶ)
+scoreboard players add @e[tag=hook.b3m] hook.b3 1
+execute as @e[tag=hook.b3m,scores={hook.b3=800..},tag=!hook.grabbed,tag=!hook.yanking,tag=!hook.thrown] at @s run function hook:boss/3/fade
+function hook:boss/3/guide
 execute if score #state hook.b3 matches 2 in hook:world run return run function hook:boss/3/shift_tick
 # 第2形態はスタンチェインで縛る(フック命中)だけで怯む。第1形態は手下を投げ当てたときだけ
 execute if score #grd hook.b3 matches 1.. run scoreboard players remove #grd hook.b3 1
