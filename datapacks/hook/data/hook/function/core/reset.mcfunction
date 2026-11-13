@@ -15,6 +15,8 @@ kill @e[type=firework_rocket]
 data remove storage hook: built
 data remove storage hook: s2
 execute in hook:world run forceload remove all
+# 開発用 inbox を止めてから load(load が inbox を走らせないように)
+function hook:dev/inbox_off
 function hook:load
 effect clear @a
 tag @a remove hook.pulling

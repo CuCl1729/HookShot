@@ -19,5 +19,8 @@ execute if entity @a[scores={hook.stage=3}] run function hook:stage/3/tick
 execute if entity @a[scores={hook.stage=4}] run function hook:stage/4/tick
 execute if entity @a[scores={hook.stage=5}] run function hook:stage/5/tick
 
+# 開発用 inbox(tools/mcrun.mjs)。#inbox hook.dev が 1 のときだけ
+execute if score #inbox hook.dev matches 1 run function hook:dev/inbox_tick
+
 # hook:enemy/summon/* が付けた目印は、呼んだ側がその tick 中に使い終わっている
 tag @e[tag=hook.new] remove hook.new

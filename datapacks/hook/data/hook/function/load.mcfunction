@@ -26,6 +26,8 @@ scoreboard objectives add hook.hz dummy
 scoreboard objectives add hook.mv dummy
 scoreboard objectives add hook.vh dummy
 scoreboard objectives add hook.score dummy
+# 開発用 inbox(hook:dev/inbox_on。tools/mcrun.mjs)
+scoreboard objectives add hook.dev dummy
 scoreboard players add #kills hook.score 0
 scoreboard players add #time hook.score 0
 scoreboard players add #combo hook.score 0
@@ -90,3 +92,6 @@ scoreboard players set #65536 hook.constant 65536
 
 # 訓練場(x -32〜60, z ±8)。建てるのは tick から読み込み後に(hook:stage/0/build)
 execute in hook:world run forceload add -32 -16 63 15
+
+# 開発用 inbox: reload ループ(hook:dev/inbox_tick)から来たとき、mcrun が書いたコマンドを実行する
+execute if score #inbox hook.dev matches 1 run function hook:dev/inbox

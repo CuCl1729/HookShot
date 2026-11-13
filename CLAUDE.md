@@ -197,5 +197,12 @@ z は ±64、y は 40〜120 に収める。各ステージの入口: `hook:stage
 - 実スニーク(user32 keybd_event で Shift を押し続ける)確認済み: 空中でフロート、訓練場のフロート段を Shift 押しっぱなしのまま撃って D 台へ(飛び降りてすぐ浮くと幕の下が見えるよう幕の下端を y 78 に上げた)、引きの途中で Shift を押すと中断。以前は押しっぱなしで引きが即中断され、フロート中に撃てなかった。
 - 爆弾兵の自爆(ignited)で前室の地形・標的は無傷(mob_griefing false)。ボス2 は前室 cp 25 から入って死亡 → 810.5 復帰・#state 0・ボスバーなし・入口の格子が開く・再入場で HP 3 から再戦、を確認。
 - v2 未確認: 掴みを実 Shift で放す(引きと同じ tag で判定)、トゲ・プレスの `hook.mv` 判定、引き寄せ中の叩きつけ、コンボ表示の見た目、旧ステージ・ボスの動作(壊れている前提)。
-- **実機テストではマウスカーソルを使わない(ユーザー指定)。** クリックもカーソル移動もしない。メニューは Tab / 矢印 / Enter、ゲーム内はキー入力とチャットコマンド、発射は `hook:dev/*`(shoot, shoot_look, aim_at, aim_ent)で代用する。
+- **実機テストではマウスカーソルを使わない(ユーザー指定)。** ゲーム内の操作はファイル経由の inbox で行い、入力デバイスもフォーカスも使わない。
+  - 仕組み: `#inbox hook.dev` が 1 の間だけ tick が 60 tick おきに `reload`(関数の権限 GAMEMASTER で `reload` の要件を満たす)。load から `hook:dev/inbox` が `dev/inbox_seq` の番号が実行済み(`#done`)より大きいときだけ `dev/inbox_body` を1回、プレイヤー(`@a[limit=1]`、`@s`)として実行し、チャットに `MCIN <n> begin` と `MCIN <n> end`(body が読み込めない・途中で return したら `fail`)を出す。
+  - 有効化(最初の1回だけ手で): ゲーム内で `/reload` → `/function hook:dev/inbox_on`。キーボードだけで、Minecraft が前面なら `tools/mcinput.ps1 chat "/function hook:dev/inbox_on"` でもよい。止めるのは `hook:dev/inbox_off`。`hook:core/reset` も必ず止める(配布前に reset するので残らない)。
+  - 実行: `node tools/mcrun.mjs "function hook:dev/out/pos" "function hook:dev/out/score {name:\"#kills\",obj:\"hook.score\"}"`(引数1つ=1行、無ければ標準入力)。body を書いて連番を上げ、end/fail が出るまで待ち(既定 15 秒)、その間の `[CHAT]` 行と関数の読み込みエラー(構文エラーの行)を表示し、body を空に戻す。終了コード 0 = end。結果は `tellraw` / `say` / `dev/out/*`(`MCO …`)で出す(コマンドの返答はログに出ない)。
+  - 複数 tick のシナリオ: `node tools/mcrun.mjs -after 80 "function hook:dev/shoot {x:1830,y:88.4,z:0}"`。N tick の間 reload を止めて、N tick 後に end を出すので、`dev/rec_*` の `[rec]` や `schedule function` した `dev/out/*` もまとめて拾える。
+  - 前提: `options.txt` の `pauseOnLostFocus:false`(ユーザーの設定。変えない)。背後でもゲームが止まらないので待てる。
+  - 制限: reload のたびに `hook:load`(`hook/config` を含む)が走るので、body で変えた `hook.cfg` などは約3秒で戻る(変えるなら同じ body で測る、または -after で reload を止める)。reload で一瞬止まるので、速度の計測は -after の中で行う。Git Bash では引数の先頭に `/` を付けない(パスに変換される)。実右クリックは `dev/shoot` / `shoot_look` / `aim_at` / `aim_ent` / `seq` で、実スニーク(押しっぱなし)は tag `hook.dev_float` で代用する(押した瞬間の中断・掴みを放すは実入力でしか試せない)。
+  - `tools/mcinput.ps1`(PostMessage)は前面のときのチャット送信とメニューのキー操作だけ効く(背後のキーは捨てられ、右クリック・スニークは前面でも効かない。実測)。
 - 操作のこつ: 先に `focus-window`。チャットはクリップボード貼り付け。`tp ... facing` は足元基準で向くので、狙う点の y を 1.6 下げる。チャット出力は `latest.log` の `[CHAT]` 行を UTF-8 で読む。
