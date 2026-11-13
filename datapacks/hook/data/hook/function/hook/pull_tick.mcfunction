@@ -3,7 +3,7 @@
 # 溜め(#windup tick)→ #v0 から毎 tick #accel ずつ #vmax まで加速して錨へ一直線 → 手前で arrive(跳ね)。スニークで中断
 scoreboard players add @s hook.pull 1
 execute unless entity @e[tag=hook.anchor] run return run function hook:hook/release
-execute if predicate hook:sneak run return run function hook:hook/release
+execute if entity @s[tag=hook.sneak_new] run return run function hook:hook/release
 scoreboard players set #chain hook.temporary 90
 execute anchored eyes positioned ^ ^ ^ facing entity @n[tag=hook.anchor] feet run function hook:hook/chain
 execute if score @s hook.pull <= #windup hook.cfg run return run function hook:hook/windup

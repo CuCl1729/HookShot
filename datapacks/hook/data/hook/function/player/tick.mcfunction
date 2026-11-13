@@ -3,6 +3,11 @@
 # hook.held = 右クリックを押し続けている(hook/use が 2 にする。離すと 2 tick で 0)
 execute if score @s hook.held matches 1.. run scoreboard players remove @s hook.held 1
 function hook:player/vel
+# hook.sneak_new = スニークを押した瞬間の tick だけ(引き・掴みの中断用。フロート中に撃っても押しっぱなしでは切れない)
+tag @s remove hook.sneak_new
+execute if predicate hook:sneak unless entity @s[tag=hook.sneak_prev] run tag @s add hook.sneak_new
+tag @s remove hook.sneak_prev
+execute if predicate hook:sneak run tag @s add hook.sneak_prev
 # 1 プレイヤー 1 tick に push は1回だけ(後の push が前を上書きする)。引き中はフロートしない
 execute unless entity @s[tag=hook.pulling] if score @s hook.hop matches 1.. run function hook:hook/hop_tick
 execute if entity @s[tag=hook.pulling] run function hook:hook/pull_tick

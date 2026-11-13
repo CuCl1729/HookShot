@@ -13,8 +13,9 @@ fill 23 71 -1 25 73 1 minecraft:gold_block
 fill 37 73 -1 39 75 1 minecraft:gold_block
 # C 塔(上面 y=82)
 fill 49 63 -5 57 81 5 minecraft:stone_bricks
-# 幕: C の上からは D 台が隠れて見えない。y 73 あたりまで落ちると幕の下に D 台の縁が見える
-fill 62 72 -8 62 95 8 minecraft:deepslate_bricks
+# 幕: C の上からは D 台が隠れて見えない。飛び降りてすぐ浮くと燃料が切れる前(y 77 あたり)に幕の下に D 台の縁が見える
+fill 62 78 -8 62 95 8 minecraft:deepslate_bricks
+fill 62 72 -8 62 77 8 minecraft:air
 # D 台(上面 y=68)と、庭へ続く床
 fill 74 63 -5 94 63 13 minecraft:polished_andesite
 fill 74 64 -4 78 67 4 minecraft:stone_bricks

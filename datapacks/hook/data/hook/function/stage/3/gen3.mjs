@@ -155,9 +155,9 @@ for (const [n] of CH) cb.push(...S[n].cmds);
 W("chase/build.mcfunction", cb);
 
 const ct = ["#> hook:stage/3/chase/tick",
-  "# in hook:world、#chase 1.. の間(gen3.mjs が生成)。番号 k の雲は 50k tick で赤くなり 50k+50 tick で崩れる(最初の崩落まで 5 秒)"];
+  "# in hook:world、#chase 1.. の間(gen3.mjs が生成)。番号 k の雲は 70k tick で赤くなり 70k+50 tick で崩れる(最初の崩落まで 6 秒、1 跳び 3.5 秒)"];
 for (const [, k, cx, T, cz] of CH) {
-  const w = 50 * k, c = 50 * k + 50;
+  const w = 70 * k, c = 70 * k + 50;
   ct.push(`execute if score #chase hook.s3 matches ${w} run ` + fill(cx - 2, T, cz - 2, cx + 2, T, cz + 2, "red_wool", "replace minecraft:white_wool"),
     `execute if score #chase hook.s3 matches ${w} run playsound minecraft:block.wool.break block @a ${cx} ${T} ${cz} 2 0.6`,
     `execute if score #chase hook.s3 matches ${c} run ` + fill(cx - 2, T - 2, cz - 2, cx + 2, T, cz + 2, "air"),
