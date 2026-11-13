@@ -11,7 +11,7 @@ kill @e[tag=hook.s2]
 data remove storage hook: s2
 # 次の tick から hook:stage/2/build が建て直す(その間 tick がプレイヤーをチェックポイントに留める)
 data remove storage hook: built.s2
-# 進行(hook.s2 の偽プレイヤー): #ra #rb #rc 炉の停止 / #an A で潰した数 / #cw #ct C のウェーブ / #kt クレーン / #hub #ae #be 到着済み / #door 扉
+# 進行(hook.s2 の偽プレイヤー): #ra #rb #rc 炉の停止 / #an A で潰した数 / #cw #ct C のウェーブ / #kt クレーン / #hub #ae #be 到着済み / #door 扉 / #cb C の爆弾兵の補充待ち
 scoreboard players set #ra hook.s2 0
 scoreboard players set #rb hook.s2 0
 scoreboard players set #rc hook.s2 0
@@ -23,12 +23,12 @@ scoreboard players set #hub hook.s2 0
 scoreboard players set #ae hook.s2 0
 scoreboard players set #be hook.s2 0
 scoreboard players set #door hook.s2 0
+scoreboard players set #cb hook.s2 0
 execute in hook:world run function hook:boss/2/reset
 function hook:cp/set {id:20,x:603.5,y:64,z:0.5,yaw:-90}
 function hook:cp/return
 function hook:score/start
-title @s times 10 60 20
-title @s title {text:"歯車工場",color:"gold"}
-title @s subtitle {text:"太陽石の欠片 1/3",color:"yellow"}
-tellraw @s {text:"太陽石の欠片 1/3。次の欠片は、この工場の番人が持っている。",color:"gray",italic:true}
-tellraw @s {text:"奥の扉は、動力炉を3基とも止めると開く。",color:"gray",italic:true}
+function hook:fx/stage_title {name:"歯車工場",sub:"太陽石の欠片 1/3"}
+function hook:fairy/say {text:"次は工場。あの大きな炉の向こうだよ"}
+tellraw @s {text:"奥の扉は、動力炉を3基とも止めると開く。番人と欠片はその先だ。",color:"gray",italic:true}
+function hook:guide/set {text:"工場に入り動力炉を探す",x:620.5,y:64,z:0.5}

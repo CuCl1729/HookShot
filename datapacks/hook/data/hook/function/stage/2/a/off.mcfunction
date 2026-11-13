@@ -5,4 +5,4 @@ kill @e[type=block_display,tag=hook.s2core]
 fill 680 64 -32 686 72 -24 minecraft:polished_blackstone replace minecraft:ochre_froglight
 fill 788 73 -6 788 74 -5 minecraft:coal_block
 particle minecraft:explosion 683 68 -28 2 3 2 0 15 force @a
-function hook:stage/2/reactor
+execute positioned 683.5 68 -27.5 run function hook:stage/2/reactor

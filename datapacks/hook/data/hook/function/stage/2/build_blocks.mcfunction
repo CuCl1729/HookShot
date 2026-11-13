@@ -55,16 +55,18 @@ summon item_display 698.5 73.6 25.5 {Tags:["hook.lore","hook.s2lore"],billboard:
 # B 高所(東): 柱 B1(天面 y 81)→ 浮き台 B1b(y 91)→ 浮き台 B2(y 102)→ 往復するクレーン(天面 y 104、中心 z 20〜-18)→ 炉の台 B3(y 111)
 # B2 と B3 は 60 離れていて射程 40 では届かない。クレーンが中ほど(中心 z 8〜-10、約 7 秒)にいる間だけ乗り継げる。床から B2 より上へは届かない
 fill 770 64 33 772 80 35 minecraft:waxed_copper_block
-fill 763 88 36 765 90 38 minecraft:waxed_cut_copper
+# 柱の頭と浮き台は奥行き 4 以上(新しい跳ねは前へ約 4 進むので 3x3 だと越えて落ちる)
+fill 769 80 32 773 80 36 minecraft:waxed_copper_block
+fill 762 88 34 765 90 38 minecraft:waxed_cut_copper
 fill 756 99 30 760 101 34 minecraft:waxed_cut_copper
 # 光の粒 3: 東の壁際の小さな浮き台(天面 y 96。B2・B1b から約 27 の寄り道)
-fill 776 93 12 778 95 14 minecraft:waxed_cut_copper
+fill 775 93 12 779 95 16 minecraft:waxed_cut_copper
 summon item_display 777.5 96.6 13.5 {Tags:["hook.lore","hook.s2lore"],billboard:"center",brightness:{sky:15,block:15},item:{id:"minecraft:glowstone_dust",count:1},transformation:{translation:[0.0f,0.0f,0.0f],scale:[0.8f,0.8f,0.8f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}
 # クレーンのレール(見た目だけ。block_display なのでフックは当たらない)・吊り鎖・台
 summon block_display 760 112 -19 {block_state:{id:"minecraft:iron_block"},transformation:{translation:[0.0f,0.0f,0.0f],scale:[1.0f,1.0f,41.0f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}
 summon block_display 760 104 20 {Tags:["hook.s2chain"],block_state:{id:"minecraft:iron_chain"},teleport_duration:8,transformation:{translation:[0.0f,0.0f,0.0f],scale:[1.0f,8.0f,1.0f],left_rotation:[0.0f,0.0f,0.0f,1.0f],right_rotation:[0.0f,0.0f,0.0f,1.0f]}}
 summon marker 760.5 102 20.5 {Tags:["hook.s2crane","hook.s2fwd"]}
-fill 759 102 19 761 103 21 minecraft:yellow_concrete
+fill 758 102 18 762 103 22 minecraft:yellow_concrete
 fill 756 108 -38 764 110 -30 minecraft:polished_blackstone_bricks
 fill 758 111 -37 762 114 -34 minecraft:polished_blackstone_bricks
 fill 758 113 -34 762 113 -34 minecraft:ochre_froglight
@@ -82,6 +84,8 @@ fill 819 64 14 863 84 14 minecraft:deepslate_tiles
 fill 819 64 -14 819 84 14 minecraft:deepslate_tiles
 fill 863 64 -14 863 84 14 minecraft:deepslate_tiles
 fill 819 64 -1 819 66 1 minecraft:air
+# ガラスの天井(壁の上端を撃って跳ね越え、部屋の外へ落ちて戦闘がやり直しになるのを防ぐ)
+fill 819 85 -14 863 85 14 minecraft:glass
 execute positioned 825 64 -10 run function hook:gimmick/press/place
 execute positioned 836 64 -10 run function hook:gimmick/press/place
 execute positioned 847 64 -10 run function hook:gimmick/press/place

@@ -16,3 +16,9 @@ tag @e[tag=hook.new] add hook.s2c
 particle minecraft:large_smoke 645.5 66 35.5 0.5 1 0.5 0 20 force @a
 particle minecraft:large_smoke 707.5 66 35.5 0.5 1 0.5 0 20 force @a
 playsound minecraft:block.piston.extend block @a[scores={hook.stage=2}] 676 66 30 2 0.6
+# 波の始まり: 搬入口の火花と鐘
+particle minecraft:electric_spark 645.5 66 35.5 0.6 1.2 0.6 0.1 30 force @a
+particle minecraft:electric_spark 707.5 66 35.5 0.6 1.2 0.6 0.1 30 force @a
+particle minecraft:flame 676.5 65 33.5 3 0.5 1 0.05 40 force @a
+playsound minecraft:block.bell.use master @a[scores={hook.stage=2}] 676 66 30 2 0.8
+playsound minecraft:entity.ravager.roar hostile @a[scores={hook.stage=2}] 676 66 30 1.5 1.1
