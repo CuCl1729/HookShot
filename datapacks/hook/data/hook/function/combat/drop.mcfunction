@@ -4,4 +4,4 @@ tag @s remove hook.yanking
 tag @s remove hook.grabbed
 scoreboard players operation @s hook.mv = #mv_t hook.cfg
 scoreboard players set @s hook.vh 0
-execute if entity @s[tag=hook.bomb] run data modify entity @s Fuse set value 30s
+scoreboard players set @s hook.fuse 0

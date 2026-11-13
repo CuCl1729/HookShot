@@ -49,6 +49,10 @@ scoreboard players set #slam_v hook.cfg 70
 scoreboard players set #knock_v hook.cfg 100
 # 衝撃波(能力1)で弾く速さ。半径 4 は hook:hook/impact に直書き
 scoreboard players set #shock_v hook.cfg 120
+# 突き飛ばし(能力1)の水平の強さの下限(×100)。張り付かれた距離から撃っても離れるように(引きの速さ×3 がこれ未満のとき)
+scoreboard players set #impact_min hook.cfg 200
+# 爆弾兵の自爆までの tick(バニラのクリーパーの Fuse 30 と同じ。hook:enemy/fuse)
+scoreboard players set #fuse_t hook.cfg 30
 # フックで動かされた後、ギミックで死ねる tick
 scoreboard players set #mv_t hook.cfg 60
 # コンボが続く tick

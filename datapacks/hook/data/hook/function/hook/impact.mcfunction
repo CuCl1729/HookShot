@@ -5,6 +5,15 @@ scoreboard players operation #ix hook.temporary = #vx hook.temporary
 scoreboard players operation #iz hook.temporary = #vz hook.temporary
 scoreboard players operation #ix hook.temporary *= #3 hook.constant
 scoreboard players operation #iz hook.temporary *= #3 hook.constant
+# 下限: 張り付かれた距離から撃つと引きが遅く弱いので、水平の強さが #impact_min 未満ならプレイヤーから離れる向きへ #impact_min で飛ばす
+scoreboard players operation #m hook.temporary = #ix hook.temporary
+scoreboard players operation #m hook.temporary *= #ix hook.temporary
+scoreboard players operation #a hook.temporary = #iz hook.temporary
+scoreboard players operation #a hook.temporary *= #iz hook.temporary
+scoreboard players operation #m hook.temporary += #a hook.temporary
+scoreboard players operation #a hook.temporary = #impact_min hook.cfg
+scoreboard players operation #a hook.temporary *= #impact_min hook.cfg
+execute if score #m hook.temporary < #a hook.temporary facing entity @p feet rotated ~180 0 run function hook:hook/impact_min
 execute store result entity @s Motion[0] double 0.01 run scoreboard players get #ix hook.temporary
 execute store result entity @s Motion[2] double 0.01 run scoreboard players get #iz hook.temporary
 scoreboard players set #iy hook.temporary 40
