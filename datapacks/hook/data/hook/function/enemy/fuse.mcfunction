@@ -9,4 +9,5 @@ particle minecraft:smoke ~ ~1.6 ~ 0.15 0.2 0.15 0.01 2 force @a
 execute if score @s hook.fuse < #fuse_t hook.cfg run return 0
 # 自爆: 近くのプレイヤーには傷(地形は壊さない)、敵は enemy/kill の爆発で倒れる
 execute as @a[distance=..3,gamemode=!spectator] run damage @s 8 minecraft:explosion
+tag @s add hook.selfboom
 function hook:enemy/kill

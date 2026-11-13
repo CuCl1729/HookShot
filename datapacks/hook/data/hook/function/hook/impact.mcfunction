@@ -13,7 +13,8 @@ scoreboard players operation #a hook.temporary *= #iz hook.temporary
 scoreboard players operation #m hook.temporary += #a hook.temporary
 scoreboard players operation #a hook.temporary = #impact_min hook.cfg
 scoreboard players operation #a hook.temporary *= #impact_min hook.cfg
-execute if score #m hook.temporary < #a hook.temporary facing entity @p feet rotated ~180 0 run function hook:hook/impact_min
+# ボスには下限を付けない(ボス戦は「速さ×3」だけで通して確かめた。張り付いた距離から一方的に飛ばせると崩れる)
+execute unless entity @s[tag=hook.boss] if score #m hook.temporary < #a hook.temporary facing entity @p feet rotated ~180 0 run function hook:hook/impact_min
 execute store result entity @s Motion[0] double 0.01 run scoreboard players get #ix hook.temporary
 execute store result entity @s Motion[2] double 0.01 run scoreboard players get #iz hook.temporary
 scoreboard players set #iy hook.temporary 40
