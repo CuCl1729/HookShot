@@ -4,3 +4,4 @@ scoreboard objectives add hook.dev dummy
 scoreboard players set #inbox hook.dev 0
 scoreboard players set #hold hook.dev 0
 schedule clear hook:dev/inbox_end
+schedule clear hook:dev/inbox_run

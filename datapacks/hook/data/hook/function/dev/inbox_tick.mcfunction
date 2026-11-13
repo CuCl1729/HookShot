@@ -3,5 +3,9 @@
 execute if score #hold hook.dev matches 1.. run return run scoreboard players remove #hold hook.dev 1
 scoreboard players add #t hook.dev 1
 execute if score #t hook.dev matches ..59 run return 0
+# プレイヤーを push で動かしている間は reload を待つ(実測: 引きの途中で reload すると速度がずれて 100 マス先へ飛んだ)
+execute if entity @a[tag=hook.pulling] run return 0
+execute if entity @a[tag=hook.floating] run return 0
+execute if entity @a[scores={hook.hop=1..}] run return 0
 scoreboard players set #t hook.dev 0
 reload

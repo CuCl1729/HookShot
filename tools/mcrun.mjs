@@ -73,7 +73,7 @@ while (!result && Date.now() < deadline) {
     } else if (/Failed to load function|Failed to execute function|Unknown function/.test(line)) {
       out.push(line);
       inError = true;
-    } else if (inError && !stamped && line.trim()) {
+    } else if (inError && !stamped && line.trim() && !/^\s*(at |\.\.\. \d+ more)/.test(line)) {
       out.push('  ' + line.trim()); // 例外の続きの行(構文エラーの位置)
     } else if (stamped) inError = false;
   }
