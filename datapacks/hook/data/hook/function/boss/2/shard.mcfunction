@@ -10,3 +10,4 @@ execute as @a[scores={hook.stage=2}] at @s facing 841.5 78 0.5 run particle mine
 execute in hook:world run particle minecraft:end_rod 841.5 78 0.5 1 1 1 0.3 100 force @a
 playsound minecraft:block.beacon.power_select master @a ~ ~ ~ 4 1.2
 function hook:fx/shard_get {n:2}
+function hook:guide/set {text:"欠片を取り戻した",x:841.5,y:64,z:0.5}
