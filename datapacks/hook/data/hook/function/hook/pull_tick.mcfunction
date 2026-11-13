@@ -5,6 +5,7 @@ scoreboard players add @s hook.pull 1
 execute unless entity @e[tag=hook.anchor] run return run function hook:hook/release
 execute if entity @s[tag=hook.sneak_new] run return run function hook:hook/release
 scoreboard players set #chain hook.temporary 90
+execute unless entity @n[tag=hook.anchor,type=marker] at @n[tag=hook.anchor] run tp @e[type=item_display,tag=hook.tip] ~ ~1 ~
 execute anchored eyes positioned ^ ^ ^ facing entity @n[tag=hook.anchor] feet run function hook:hook/chain
 execute if score @s hook.pull <= #windup hook.cfg run return run function hook:hook/windup
 function hook:hook/pull_sound
@@ -15,6 +16,9 @@ scoreboard players operation #t hook.temporary -= #windup hook.cfg
 execute if score #t hook.temporary > #maxt hook.cfg run return run function hook:hook/arrive
 function hook:hook/stuck_check
 execute if score @s hook.stuck >= #stuck hook.cfg run return run function hook:hook/arrive
+# クライアントが止まっている(描画の詰まりで位置が1 tick 全く変わらない)間は押さず、到着も決めない。押した分がたまって再開した瞬間に空高く飛ばされた・
+# 止まった tick に到着すると引きの速度を打ち消せず 20 マス先へ飛んだ(実測)。次の tick に player/vel が 2 tick 分の移動を半分にして測り直す
+execute if score #t hook.temporary matches 2.. if score #vx hook.temporary matches 0 if score #vy hook.temporary matches 0 if score #vz hook.temporary matches 0 run return 0
 
 # 加速
 execute if score @s hook.spd matches 1.. run scoreboard players operation @s hook.spd += #accel hook.cfg

@@ -18,6 +18,15 @@ scoreboard players operation @s hook.hx *= #hop_h hook.cfg
 scoreboard players operation @s hook.hz *= #hop_h hook.cfg
 scoreboard players operation @s hook.hx /= #1000 hook.constant
 scoreboard players operation @s hook.hz /= #1000 hook.constant
+# + 着く直前の水平の勢い × #hop_keep / 100(引かれてきた向きへ少し流れる)
+scoreboard players operation #kx hook.temporary = #cx hook.temporary
+scoreboard players operation #kz hook.temporary = #cz hook.temporary
+scoreboard players operation #kx hook.temporary *= #hop_keep hook.cfg
+scoreboard players operation #kz hook.temporary *= #hop_keep hook.cfg
+scoreboard players operation #kx hook.temporary /= #100 hook.constant
+scoreboard players operation #kz hook.temporary /= #100 hook.constant
+scoreboard players operation @s hook.hx += #kx hook.temporary
+scoreboard players operation @s hook.hz += #kz hook.temporary
 scoreboard players operation @s hook.hy = #ay hook.temporary
 # この tick から #hop_t tick かけて、その速度に寄せる(hook:hook/hop_tick)
 scoreboard players operation @s hook.hop = #hop_t hook.cfg

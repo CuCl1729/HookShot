@@ -1,5 +1,7 @@
 #> hook:hook/stuck_check
 # @s = 引かれているプレイヤー。#t = 引き始めてからの tick。速さ(各軸の絶対値の和)が #stuck_v 未満なら hook.stuck を数える
+# 位置が全く変わらない tick はクライアントの詰まり(数えも戻しもしない。数えると引きの途中で詰まり終了して、残った勢いで飛ばされた)
+execute if score #vx hook.temporary matches 0 if score #vy hook.temporary matches 0 if score #vz hook.temporary matches 0 run return 0
 scoreboard players operation #l1 hook.temporary = #vx hook.temporary
 execute if score #l1 hook.temporary matches ..-1 run scoreboard players operation #l1 hook.temporary *= #-1 hook.constant
 scoreboard players operation #a hook.temporary = #vy hook.temporary

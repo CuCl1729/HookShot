@@ -21,12 +21,14 @@ scoreboard players set #maxt hook.cfg 40
 scoreboard players set #stuck hook.cfg 3
 scoreboard players set #stuck_v hook.cfg 15
 # 終了時の跳ね: 上 = #hop_vy + (錨の高さ − 足の高さ)/#hop_dy(#hop_vymax まで)、横 = 見ている水平方向 × #hop_h
-scoreboard players set #hop_vy hook.cfg 70
+scoreboard players set #hop_vy hook.cfg 100
 scoreboard players set #hop_dy hook.cfg 6
 scoreboard players set #hop_vymax hook.cfg 120
-scoreboard players set #hop_h hook.cfg 45
-# 跳ねの速度に寄せる tick 数
-scoreboard players set #hop_t hook.cfg 8
+scoreboard players set #hop_h hook.cfg 28
+# 横に、着く直前の水平の勢いの #hop_keep % を足す
+scoreboard players set #hop_keep hook.cfg 5
+# 跳ねの速度に寄せる tick 数(頂点のあたりまで。壁の側面に止められても上端を越えるまで前へ押し続ける)
+scoreboard players set #hop_t hook.cfg 12
 # フロート(空中でスニーク)の燃料 tick。着地・到着で満タン。燃料がある間は #float_vy(×100 ブロック/tick)でゆっくり上がる
 scoreboard players set #float_vy hook.cfg 9
 scoreboard players set #fuel hook.cfg 40

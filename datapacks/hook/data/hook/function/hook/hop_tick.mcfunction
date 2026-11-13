@@ -1,6 +1,8 @@
 #> hook:hook/hop_tick
 # @s = 到着後の跳ね中のプレイヤー(hook.hop = 残り tick)。望む速度 hook.hx/hy/hz に合わせて押し直す
 # (押した速度がその tick に効いたかは位置の差でしか分からず1回では合わないので、数 tick かけて寄せる)。望む速度は重力・空気抵抗で減らしていく
+# クライアントが止まっている tick は押さない(pull_tick と同じ。最初の1回 = arrive からは必ず押す)
+execute if score @s hook.hop < #hop_t hook.cfg if score #vx hook.temporary matches 0 if score #vy hook.temporary matches 0 if score #vz hook.temporary matches 0 run return run scoreboard players remove @s hook.hop 1
 scoreboard players remove @s hook.hop 1
 scoreboard players operation #motion hook.X0 = @s hook.hx
 scoreboard players operation #motion hook.Y0 = @s hook.hy

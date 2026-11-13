@@ -15,6 +15,8 @@ execute if predicate hook:sneak run tag @s add hook.sneak_prev
 execute unless entity @s[tag=hook.pulling] if score @s hook.hop matches 1.. run function hook:hook/hop_tick
 execute if entity @s[tag=hook.pulling] run function hook:hook/pull_tick
 execute unless entity @s[tag=hook.pulling] unless score @s hook.hop matches 1.. run function hook:hook/float
+# 引いていないのに残ったフックの先端(core/reset など release を通らない終わり方)を消す
+execute unless entity @s[tag=hook.pulling] run kill @e[type=item_display,tag=hook.tip]
 execute unless entity @e[tag=hook.yanking] unless entity @e[tag=hook.grabbed] run tag @s remove hook.owner
 execute if entity @s[tag=hook.rec] run function hook:dev/rec_tick
 execute store result score @s hook.y run data get entity @s Pos[1]
