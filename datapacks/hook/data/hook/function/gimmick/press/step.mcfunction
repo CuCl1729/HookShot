@@ -1,5 +1,6 @@
 #> hook:gimmick/press/step
 # @s = 動作中のプレス marker(実行位置も)。2: 落とす / 3〜8: 下の敵を潰す / 60: 上げ始める / 80: 待機へ
+# 標的を撃つこと自体がプレイヤーの操作なので、下の敵は hook.mv に関係なく潰す(ボスは enemy/kill が boss/hit へ回す)
 scoreboard players add @s hook.press 1
 execute if score @s hook.press matches 2 positioned ~-2.5 ~ ~-2.5 as @e[type=block_display,tag=hook.press_head,distance=..0.5] at @s run tp @s ~ ~-6 ~
 execute if score @s hook.press matches 2 run playsound minecraft:block.piston.extend block @a ~ ~ ~ 2 0.5
@@ -12,7 +13,7 @@ execute if score @s hook.press matches 4 run particle minecraft:large_smoke ~ ~-
 execute if score @s hook.press matches 4 run particle minecraft:crit ~ ~-5 ~ 3 0.5 3 0.5 60 force @a
 execute if score @s hook.press matches 4 run playsound minecraft:entity.generic.explode block @a ~ ~-6 ~ 1.2 0.7
 execute if score @s hook.press matches 4 run playsound minecraft:entity.iron_golem.attack block @a ~ ~-6 ~ 1.5 0.5
-execute if score @s hook.press matches 3..8 positioned ~-2.5 ~-6 ~-2.5 as @e[tag=hook.enemy,dx=4,dy=4,dz=4] at @s run function hook:enemy/gimmick
+execute if score @s hook.press matches 3..8 positioned ~-2.5 ~-6 ~-2.5 as @e[tag=hook.enemy,dx=4,dy=4,dz=4] at @s run function hook:enemy/kill
 execute if score @s hook.press matches 60 positioned ~-2.5 ~-6 ~-2.5 as @e[type=block_display,tag=hook.press_head,distance=..0.5] run data modify entity @s teleport_duration set value 20
 execute if score @s hook.press matches 60 positioned ~-2.5 ~-6 ~-2.5 as @e[type=block_display,tag=hook.press_head,distance=..0.5] at @s run tp @s ~ ~6 ~
 execute if score @s hook.press matches 60 run playsound minecraft:block.piston.contract block @a ~ ~ ~ 1 0.5

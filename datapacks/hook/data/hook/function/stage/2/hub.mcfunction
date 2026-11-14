@@ -6,5 +6,5 @@ execute in hook:world positioned 641.5 64 -2.5 run function hook:enemy/summon/zo
 tag @e[tag=hook.new] add hook.s2
 function hook:fairy/say {text:"大きなプレス！ 敵を下へ運んで、四隅の標的を撃とう"}
 tellraw @s {text:"動力炉は3基: 北の圧延ライン、南の組立場、東の高所。どれからでもよい。東の扉の上のランプが消えた数だけ止まっている。",color:"gray"}
-tellraw @s {text:"プレス: 筐体の四隅の標的を撃つと落ちる。潰れるのはフックで動かして3秒以内の敵だけ。引き寄せて真下で放し、すぐ標的を撃て。",color:"gray"}
+function hook:fairy/say {text:"下にいる敵はみんな潰れる。下で囮になってもいいよ"}
 function hook:stage/2/goal

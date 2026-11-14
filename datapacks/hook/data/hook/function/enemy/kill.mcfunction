@@ -1,5 +1,5 @@
 #> hook:enemy/kill
-# @s = 倒す敵(実行位置も @s)。無条件に倒す(ギミックからは hook:enemy/gimmick 経由)。ボスは hook:boss/hit に回す。
+# @s = 倒す敵(実行位置も @s)。無条件に倒す(トゲからは hook:enemy/gimmick 経由、プレスからは直接)。ボスは hook:boss/hit に回す。
 # 雑魚はキル数・コンボを数え(hook:score/kill)、爆弾兵なら爆発して周りの敵も倒す
 execute if entity @s[tag=hook.boss] run return run function hook:boss/hit
 execute if entity @s[tag=hook.dying] run return 0
